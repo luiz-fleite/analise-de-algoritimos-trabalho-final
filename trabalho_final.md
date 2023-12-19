@@ -353,25 +353,28 @@ $st.$ <br>
 $ x_{14} + x_{15} \leq 2 \\
  x_{24} + x_{25} \leq 2 \\
  x_{35} + x_{38} \leq 1 \\
- x_{45} + x_{46} + x_{47} - x_{14} - x_{24} \leq 0 \\
- x_{56} + x_{57} + x_{58} - x_{15} - x_{25} - x_{35} - x_{45} \leq 0 \\
- -x_{46} - x_{56} \leq -2 \\
- -x_{47} - x_{57} \leq -1 \\
- -x_{58} - x_{38} \leq -1 \\ $ 
+ x_{45} + x_{46} + x_{47} - x_{14} - x_{24} = 0 \\
+ x_{56} + x_{57} + x_{58} - x_{15} - x_{25} - x_{35} - x_{45} = 0 \\
+ -x_{46} - x_{56} = -2 \\
+ -x_{47} - x_{57} = -1 \\
+ -x_{58} - x_{38} = -1 \\ $ 
 
 Escrito na forma canônica: 
 
 $min( x_{14} + x_{46} + x_{47} + x_{45} + x_{15} + x_{26} + x_{27} + x_{28} + x_{24} + x_{22} + x_{32} + x_{38})$ <br>
 $st.$ <br>
-$ x_{14} + x_{15} \leq 2 \\
- x_{24} + x_{25} \leq 2 \\
- x_{35} + x_{38} \leq 1 \\
+$ x_{14} + x_{15} + S_1 = 2 \\
+ x_{24} + x_{25} + S_2 = 2 \\
+ x_{35} + x_{38} + S_3 = 1 \\
  x_{45} + x_{46} + x_{47} - x_{14} - x_{24} \leq 0 \\
  x_{56} + x_{57} + x_{58} - x_{15} - x_{25} - x_{35} - x_{45} \leq 0 \\
  -x_{46} - x_{56} \leq -2 \\
  -x_{47} - x_{57} \leq -1 \\
  -x_{58} - x_{38} \leq -1 \\ $ 
 
+Acima, três variáveis de folga foram acrescentadas nas fontes, para descobrir qual o destacamento excedente que deve ficar na sua cidade respectiva.
+
+Em seguida, 
 
 ## Problema 2
 
