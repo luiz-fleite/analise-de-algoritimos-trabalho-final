@@ -18,7 +18,7 @@ Conversion notes:
 * Tables are currently converted to HTML tables.
 ----->
 
-Universidade Federal do Pará
+Universidade Federal do Pará 
 
 Instituto de Ciências Exatas e Naturais
 
@@ -33,7 +33,7 @@ Alunos:
 * Luiz Antônio Lima de Freitas Leite - matrícula: 202204940008
 * Max José Lobato Pantoja Júnior - matrícula: 202204940031
 * Luiz Sérgio Samico Maciel Filho - matrícula: 202204940042
-* Wesley Pontes Barbosa - matrícula: 202204940006
+* Wesley Pontes Barbosa - matrícula: 202204940006 
 
 # Questão 1.
 
@@ -266,12 +266,12 @@ Então, durante a reunião decisiva, o general polonês Edward disse: “O perig
 >
 >A primeira tentativa de solução foi através da utilização do algoritmo de Dijkstra para encontrar o caminho de menor custo entre todos os caminhos de $P$ executando-o a partir de um nó de folga artificial em S até um outro nó de folga artificial em T, e fixamos esse menor caminho suprindo o máximo de demanda da fonte até que ela seja completamente suprida ou a fonte se esgote, depois rodamos o algoritmo de Dijkstra novamente para recalcular os menores caminhos desconsiderando os vértices supridos ou esgotados. 
 >
->Esse método direto e intuitivo é uma forma um pouco personalizada de outro que já existia e chama-se método do custo mínimo, de complexidade $O(|E|+|V|\log{|V|})$, o qual, na verdade, não tem garantia de sempre retornar a resposta ótima.
+>Esse método direto e intuitivo é uma forma um pouco personalizada de outro que já existia e chama-se método do custo mínimo, de complexidade $O(\mid E \mid+\mid V \mid \log{\mid V \mid })$, o qual, na verdade, não tem garantia de sempre retornar a resposta ótima.
 > Como exemplificado no problema abaixo:
 
 ![Problema](problema_nao_trivial.png)
 
-> Neste caso, em que S = {a1, a2, a3}, T = {b1, b2, b3}, b(a1) = 2, b(a2) = 2, b(a3) = 1, b(b1) = -2, b(b2) = -1 e b(b3) = -1, ao aplicar o método que fixa primeiro a rota de menor caminho será escolhido a1 para suprir completamente b1 ao custo de 3 duas vezes ao invés de escolher a2 ao custo de 4, a3 suprirá b3 e por fim sobrará apenas a2 para suprir b2 ao custo de 100. Portanto, nós percebemos que era necessário um algoritmo que verificasse mais possibilidades, de forma eficiente, antes de decidir qual s é melhor para suprir cada t considerando o custo total, e não apenas o local.
+> Neste caso, em que  S = {a1, a2, a3} , T = {b1, b2, b3}, b(a1) = 2, b(a2) = 2, b(a3) = 1, b(b1) = -2, b(b2) = -1 e b(b3) = -1, ao aplicar o método que fixa primeiro a rota de menor caminho será escolhido a1 para suprir completamente b1 ao custo de 3 duas vezes ao invés de escolher a2 ao custo de 4, a3 suprirá b3 e por fim sobrará apenas a2 para suprir b2 ao custo de 100. Portanto, nós percebemos que era necessário um algoritmo que verificasse mais possibilidades, de forma eficiente, antes de decidir qual s é melhor para suprir cada t considerando o custo total, e não apenas o local.
 >
 >Assim, reanalisamos o problema e após pesquisa sobre o assunto, chegamos a conclusão de que se trata, na verdade, de **um problema de fluxo de custo mínimo**, tal seja, dado uma rede em que cada aresta $(i, j)$ possua um fluxo $X_{ij}$ e um custo $c_{ij}$ por unidade de fluxo, o custo total do fluxo na aresta é dado por $c_{ij}X_{ij}$. Um modelo que busca o fluxo de custo mínimo procura uma fluxo viável que tem o menor custo de fluxos:
  $$
@@ -322,11 +322,11 @@ $\alpha_1 = 1;\\
 >
 >No problema especifico proposto as variáveis são:
 >
->$V = {1, 2, 3, 4, 5, 6, 7, 8};$
+>$V = \{1, 2, 3, 4, 5, 6, 7, 8\};$
 >
->$S = {1, 2, 3};$
+>$S = \{1, 2, 3\};$
 >
->$T = {6, 7, 8};$
+>$T = \{6, 7, 8\};$
 >
 >$b_1 = 2; 
 b_2 = 2; 
@@ -410,7 +410,7 @@ Atualizamos a tabela de acordo com a regra do pivô e repetimos os passos.
 >
 >Continuamos esses passos até alcançar a solução ótima. O processo envolve iterativamente escolher uma variável básica para entrar e uma para sair da base, atualizando a tabela a cada iteração, até que os custos reduzidos sejam todos não-negativos e a solução seja otimizada.
 >
->Solução final:
+Solução final: 
 >$z = 15; \\
 x_{14} = 2; \\
 x_{46} = 2; \\
@@ -453,14 +453,21 @@ b_8 = 0;$
 ### Referências
 1. Fourer, Robert. Solving Network Problems. Nortwester University, Illinois, Estados Unidos. 2004. Disponível em: http://www.4er.org/CourseNotes/Book%20B/B-IV.pdf.
 
+2. ORLIN, James B. A polynomial time primal network simplex algorithm for minimum cost flows. Mathematical Programming, v. 78, p. 109-129, 1997.
+
 2. Links diversos:<br>
-2.1 https://ocw.mit.edu/courses/15-082j-network-optimization-fall-2010/resources/mit15_082jf10_lec16/
+3.1 https://ocw.mit.edu/courses/15-082j-network-optimization-fall-2010/resources/mit15_082jf10_lec16/
 
-    2.2 https://codeforces.com/blog/entry/94190
+    3.2 https://codeforces.com/blog/entry/94190
 
-    2.3 https://cp-algorithms.com/graph/min_cost_flow.html#complexity
+    3.3 https://cp-algorithms.com/graph/min_cost_flow.html#complexity
 
-    2.4 https://web.stanford.edu/class/cs361b/files/cs361b-notes.pdf
+    3.4 https://web.stanford.edu/class/cs361b/files/cs361b-notes.pdf
+
+    3.5 https://www.youtube.com/watch?v=Sv3fb2xRhFI
+
+    3.6 https://or.stackexchange.com/questions/5609/adding-slack-nodes-to-min-cost-network-flows
+
 
     
 ## Problema 2
@@ -729,15 +736,15 @@ Tabela 1: Tabela de Precedências.
 
 >O algoritmo implementa o Método do Caminho Crítico (Critical Path Method ou CPM), uma técnica fundamental no gerenciamento de projetos para coordenar e monitorar atividades sequenciais. No âmbito desse algoritmo, o grafo é representado por meio de um dicionário, onde as chaves correspondem aos nós, representando as tarefas, e os valores consistem em listas de nós adjacentes, indicando dependências entre as tarefas. Além disso, as durações das atividades são registradas em um dicionário denominado self.duration.
 >
->A primeira etapa do algoritmo consiste na obtenção de uma ordenação topológica do grafo por meio do método topological_sort. Essa ordenação é crucial para determinar a sequência correta de execução das tarefas e é utilizada posteriormente no cálculo do caminho crítico.
+>A primeira etapa do algoritmo consiste na obtenção de uma ordenação topológica do grafo por meio do método 'OrdenacaoTopologica'. Essa ordenação é crucial para determinar a sequência correta de execução das tarefas e é utilizada posteriormente no cálculo do caminho crítico.
 >
->O método critical_path é responsável por calcular o caminho crítico, bem como os tempos de início mais cedo para cada tarefa. Utilizando a ordenação topológica, esse método realiza cálculos iterativos para determinar quando cada tarefa deve iniciar, minimizando assim a duração total do projeto.
+>O método "CaminhoCritico" é responsável por calcular o caminho crítico, bem como os tempos de início mais cedo para cada tarefa. Utilizando a ordenação topológica, esse método realiza cálculos iterativos para determinar quando cada tarefa deve iniciar, minimizando assim a duração total do projeto.
 >
->O último método, slack, tem como objetivo calcular a folga de cada tarefa. A folga representa o tempo que uma tarefa pode ser atrasada sem impactar o tempo total do projeto. Tarefas com folga zero fazem parte do caminho crítico, enquanto tarefas com folga não zero têm alguma flexibilidade temporal.
+>O último método, 'Folga', tem como objetivo calcular a folga de cada tarefa. A folga representa o tempo que uma tarefa pode ser atrasada sem impactar o tempo total do projeto. Tarefas com folga zero fazem parte do caminho crítico, enquanto tarefas com folga não zero têm alguma flexibilidade temporal.
 >
->Quanto à complexidade temporal do algoritmo, esta é determinada principalmente pelo cálculo da ordenação topológica, realizado pelo método DFS (topological_sort). Em termos de notação assintótica, a complexidade temporal é O(V + E), onde V é o número de nós (vértices) e E é o número de arestas no grafo. Essa eficiência torna o CPM adequado para a maioria dos projetos do mundo real, especialmente quando estes possuem um número moderado de tarefas e dependências.
+>Quanto à complexidade temporal do algoritmo, esta é determinada principalmente pelo cálculo da ordenação topológica, realizado pelo método DFS ('OrdenacaoTopologica'). Em termos de notação assintótica, a complexidade temporal é O(V + E), onde V é o número de nós (vértices) e E é o número de arestas no grafo. Essa eficiência torna o CPM adequado para a maioria dos projetos do mundo real, especialmente quando estes possuem um número moderado de tarefas e dependências.
 
-Código:
+    pseudcódigo:
 ```
 Algoritmo Grafo
     // Definindo a classe Graph
@@ -848,46 +855,44 @@ Algoritmo Grafo
 
 ###  O tempo mínimo, isto é, o tempo antes do qual não é possível terminar o conjunto de tarefas;
 
->Estratégias Utilizadas
->1. Ordenação Topológica
->
 >A estratégia principal empregada é a ordenação topológica do grafo, que cria uma sequência linear dos nós de acordo com suas dependências temporais. Essa ordenação é essencial para calcular o tempo mínimo necessário para a conclusão de todas as tarefas.
->2. Cálculo de Tempo
 >
->O código utiliza o conceito de tempo para cada tarefa, representado pelos tempos mais cedo de início (ES) e mais tarde de início (LS). O tempo mais cedo de início é o momento em que uma tarefa pode começar, considerando as dependências temporais. O tempo mais tarde de início é o último momento em que uma tarefa pode começar sem atrasar o projeto.
-Algoritmo Implementado
+>Para calcular o tempo o código utiliza o conceito de tempo para cada tarefa, representado pelos tempos mais cedo de início (ES) e mais tarde de início (LS). O tempo mais cedo de início é o momento em que uma tarefa pode começar, considerando as dependências temporais. O tempo mais tarde de início é o último momento em que uma tarefa pode começar sem atrasar o projeto.
 >
 >O código fornece uma implementação de um grafo dirigido acíclico (DAG) usando a classe Graph. O algoritmo segue os passos a seguir:
-Adição de Arestas
+
+Passo 1: Adição de Arestas
 >
->O método add_edge adiciona arestas ao grafo, especificando os nós de origem e destino, bem como a duração da tarefa.
-Ordenação Topológica
+>O método 'AdicionarAresta' adiciona arestas ao grafo, especificando os nós de origem e destino, bem como a duração da tarefa.
+
+Passo 2: Ordenação Topológica
 >
->O método topological_sort realiza uma ordenação topológica do grafo usando uma busca em profundidade (DFS). O resultado é uma sequência de tarefas que respeita as dependências temporais.
-Cálculo do Caminho Crítico
+>A ordenação topológica no código é implementada pelo método topological_sort, que utiliza uma abordagem baseada em busca em profundidade (DFS) para percorrer o grafo direcionado acíclico (DAG). A primeira etapa desse método consiste na inicialização de algumas estruturas de dados, como um conjunto chamado nodes para armazenar todos os nós únicos presentes no grafo. Esse conjunto é construído iterando sobre as chaves e valores do dicionário de adjacências, garantindo que todos os nós sejam considerados. Além disso, são criadas uma pilha vazia chamada stack para armazenar a ordenação topológica e um dicionário visited para rastrear quais nós já foram visitados durante a DFS.
 >
->O método critical_path calcula o caminho crítico do projeto, determinando os tempos mais cedo e mais tarde de início para cada tarefa. Identifica as tarefas críticas, aquelas que não podem ser atrasadas sem afetar o tempo total do projeto.
-Determinação do Tempo Mínimo
+>Em seguida, o método topological_sort itera sobre cada nó do grafo. Para cada nó não visitado, a função dfs é chamada, iniciando assim uma busca em profundidade a partir desse nó específico. A função dfs é responsável por explorar recursivamente os vizinhos não visitados do nó atual. Esse processo se repete até que todos os vizinhos tenham sido visitados, momento em que o nó atual é empilhado na pilha stack. Esse empilhamento ocorre de acordo com a ordem pós-ordem da DFS, resultando em uma pilha que reflete a ordenação topológica reversa do grafo.
+>
+>Finalmente, o método topological_sort retorna a pilha stack invertida (stack[::-1]). Essa inversão é realizada para obter a ordenação topológica correta, onde os nós menos dependentes (sem arestas de entrada) aparecem primeiro na sequência.
+
+Passo 3: Cálculo do Caminho Crítico
+>
+>O método do CaminhoCritico calcula o caminho crítico do projeto, determinando os tempos mais cedo e mais tarde de início para cada tarefa. Identifica as tarefas críticas, aquelas que não podem ser atrasadas sem afetar o tempo total do projeto.
+
+Passo 4: Determinação do Tempo Mínimo
 >
 >O tempo mínimo é então determinado como o tempo mais tarde de início da última tarefa no caminho crítico.
 
 ### As tarefas críticas ou de folga nula, ou seja, aquelas que não toleram atrasos;
 
->Estratégias Utilizadas
->1. Caminho Crítico
->
 >A estratégia principal para identificar as tarefas críticas e com folga nula é calcular o caminho crítico do projeto. O caminho crítico é a sequência de tarefas que determina o tempo mínimo para concluir o projeto. As tarefas que compõem o caminho crítico são aquelas que não podem ser atrasadas sem afetar o tempo total do projeto.
->2. Cálculo de Folga
 >
 >A folga de uma tarefa é a quantidade de tempo pela qual ela pode ser atrasada sem atrasar o projeto como um todo. Tarefas com folga nula são consideradas críticas, enquanto aquelas com folga não nula podem sofrer atrasos sem impactar o projeto.
-Algoritmo Implementado
 >
 >O código implementa as estratégias mencionadas usando os seguintes métodos: <br>
 >
->$\bullet$ Método critical_path: <br>
+>$\bullet$ Método do Caminho Crítico: <br>
 >Este método calcula o caminho crítico do projeto, determinando os tempos mais cedo de início (ES) e mais tarde de início (LS) para cada tarefa. As tarefas cujos tempos ES e LS são iguais fazem parte do caminho crítico.<br>
 >
->$\bullet$ Método slack: <br>
+>$\bullet$ Método 'Folga': <br>
 >Este método calcula a folga para cada tarefa, subtraindo o tempo mais cedo de início (ES) do tempo mais tarde de início (LS). Tarefas com folga nula são identificadas como críticas, enquanto aquelas com folga não nula são consideradas não críticas.
 
 ### As tarefas que podem sofrer atrasos com as respectivas folgas.
@@ -897,8 +902,17 @@ Algoritmo Implementado
 >
 >A estratégia principal para identificar as tarefas que podem sofrer atrasos é calcular a folga para cada tarefa. A folga de uma tarefa é a quantidade de tempo pela qual ela pode ser atrasada sem atrasar o projeto como um todo. Tarefas com folga não nula podem sofrer atrasos sem impactar o projeto.
 Algoritmo Implementado
->
+>+
 >O código implementa a estratégia mencionada usando o método:
-Método slack
+Método 'Folga'
 >
 >Este método calcula a folga para cada tarefa, subtraindo o tempo mais cedo de início (ES) do tempo mais tarde de início (LS). Tarefas com folga não nula são identificadas como aquelas que podem sofrer atrasos sem impactar o projeto.
+
+Solução final:
+
+> Após a aplicação do algoritmo ele retorna o valor das variáveis atualizado de acordo com o problema dado
+> 
+>Project Duration: 44 \
+Critical Path: ['T4', 'T3', 'T7', 'T5', 'T8', 'T10', 'T11', 'T12', 'FIM'] \
+Zero Slack Tasks: {'T3': 0, 'T4': 0, 'T5': 0, 'T7': 0, 'T8': 0, 'T10': 0, 'T11': 0, 'T12': 0} \
+Non-Zero Slack Tasks: {'T1': 2, 'T2': 29, 'T6': 3, 'T9': 3}
