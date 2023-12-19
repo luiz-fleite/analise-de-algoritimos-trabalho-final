@@ -251,7 +251,8 @@ As forças polonesas foram informadas que o ataque alemão se daria em três fre
 
 Após uma rápida inspeção do mapa do território, fez-se o esquema da Figura 1, onde as estradas que poderiam ser utilizadas pelas divisões de combate polonesas são apresentadas. Observe que o valor da aresta representa a distância em quilômetros.
 
-[endereco da foto]
+![Figura 1: Esquemático do território](campo_de_batalha.jpg)
+
 Figura 1: Esquemático do território.
 
 Os generais poloneses precisavam decidir de que aquartelamento deviam seguir as divisões necessárias em $\beta$<sub>1</sub>, $\beta$<sub>2</sub> e $\beta$<sub>3</sub>. O objetivo era a minimização das perdas humanas, relacionado diretamente com o perigo de bombardeamento.
@@ -291,6 +292,86 @@ Dentre os algoritmos pesquisados que solucionam esse tipo de problema, como *Suc
 O algoritmo do *Network Simplex* é a aplicação do método simplex para a modelagem do problema como um programa linear. A estrutura de rede do problema, contudo, faz com que a solução seja significativamente mais simples do que um programa linear genérico.
 
 (Escrever o programa linear no latex e colar aqui).
+E o programa linear resultante é:
+
+    RESOLUÇÃO:
+Por motivos de melhorar a notação do problema, substituimos o nome dos vertices para valores numericos da seguinte forma: <br>
+a1 = 1; \
+a2 = 2; \
+a3 = 3; \
+1 = 4; \
+2 = 5; \
+b1 = 6; \
+b2 = 7; \
+b3 = 8; 
+
+No problema especifico proposto as variáveis são:
+
+V = {1, 2, 3, 4, 5, 6, 7, 8};
+
+S = {1, 2, 3};
+
+T = {6, 7, 8};
+
+$b_1 = 2; 
+b_2 = 2; 
+b_3 = 1; 
+b_6 = -2; 
+b_7 = -1; 
+b_8 = -1;$
+
+E = {(1, 4), 
+(4, 6), 
+(4, 7), 
+(4, 5), 
+(1, 5), 
+(2, 6), 
+(2, 7), 
+(2, 8), 
+(2, 4), 
+(2, 2), 
+(3, 2), 
+(3, 8)};
+
+$C_{14} = 1; 
+C_{46} = 2; 
+C_{47} = 4; 
+C_{45} = 1; 
+C_{15} = 3; 
+C_{56} = 3; 
+C_{57} = 5; 
+C_{58} = 2; 
+C_{24} = 2; 
+C_{25} = 3; 
+C_{35} = 1; 
+C_{38} = 4 $
+
+E o programa linear resultante é:
+
+$min( x_{14} + x_{46} + x_{47} + x_{45} + x_{15} + x_{26} + x_{27} + x_{28} + x_{24} + x_{22} + x_{32} + x_{38})$ <br>
+$st.$ <br>
+$ x_{14} + x_{15} \leq 2 \\
+ x_{24} + x_{25} \leq 2 \\
+ x_{35} + x_{38} \leq 1 \\
+ x_{45} + x_{46} + x_{47} - x_{14} - x_{24} \leq 0 \\
+ x_{56} + x_{57} + x_{58} - x_{15} - x_{25} - x_{35} - x_{45} \leq 0 \\
+ -x_{46} - x_{56} \leq -2 \\
+ -x_{47} - x_{57} \leq -1 \\
+ -x_{58} - x_{38} \leq -1 \\ $ 
+
+Escrito na forma canônica: 
+
+$min( x_{14} + x_{46} + x_{47} + x_{45} + x_{15} + x_{26} + x_{27} + x_{28} + x_{24} + x_{22} + x_{32} + x_{38})$ <br>
+$st.$ <br>
+$ x_{14} + x_{15} \leq 2 \\
+ x_{24} + x_{25} \leq 2 \\
+ x_{35} + x_{38} \leq 1 \\
+ x_{45} + x_{46} + x_{47} - x_{14} - x_{24} \leq 0 \\
+ x_{56} + x_{57} + x_{58} - x_{15} - x_{25} - x_{35} - x_{45} \leq 0 \\
+ -x_{46} - x_{56} \leq -2 \\
+ -x_{47} - x_{57} \leq -1 \\
+ -x_{58} - x_{38} \leq -1 \\ $ 
+
 
 ## Problema 2
 
