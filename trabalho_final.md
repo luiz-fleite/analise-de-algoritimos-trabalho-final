@@ -138,42 +138,39 @@ Para provar que $\pi$ pertence a NP é necessário verificá-lo:<br>
 FASE 1: Exibição e justificativa da resposta “sim”.<br>
 Dado o grafo $G$ e $k \leq$ 2:<br>
 
-[Grafo G]
+![Grafo](grafo_questao_4.png)
+
 >$G(V, E);$ <br>
->$V = {};$
->$E = {}$
-
-
-
->Justificativa para a cobertura de vértices de tamanho menor que x: <br>
-$ V^{\prime} = {A} $
-
-[conjunto com menos de x vértices que cubra todo o grafo G]
-
+>$V = \{1, 2, 3, 4, 5\};$ <br>
+>$E = \{(1, 2), (2, 3), (2, 4), (2, 5)\}$
+>
+>Justificativa para a cobertura de vértices de tamanho menor que 2: <br>
+$V^{\prime} = \{2\}$
 >
 >FASE 2: verificação da resposta “sim” em tempo polinomial:<br>
-  pseudocódigo:
+>
+>pseudocódigo:
 ```
 VERIFICA(G,V',k)
     // primeiro testa o tamanho de V'
     se |V'| > k:
         retorna "FALSO"
     // depois verifica se V' cobre todas as arestas
-    teste $\neq$ E // conjunto teste temporário
+    teste = E // conjunto teste temporário
     para cada v em V':
         para cada e em teste: // "e" é aresta
             se v está em e:
                 remove e de teste
-    se |teste| $\neq$$\neq$ 0: retorna "VERDADEIRO"
+    se |teste| == 0: retorna "VERDADEIRO"
     senão: retorna "FALSO"
-
-complexidade de tempo:
-O(|V'| + |V'| * E)
-termo mais dominante
-O(|V'| * E)
-como V não pode ser maior que K:
-O(k * E)
 ```
+
+>complexidade de tempo: \
+O(|V'| + |V'| * E) \
+termo mais dominante \
+O(|V'| * E) \
+como V não pode ser maior que K: \
+O(k * E)
 
 ### b) Sabe-se que o problema da satisfatibilidade de fórmulas (SAT) é polinomialmente transformável no problema $\pi$. Então, é possível afirmar que $\pi \in$ NP-Completo? Por quê?
 
@@ -181,14 +178,14 @@ O(k * E)
 pois para ser NP-Completo deve satisfazer 2 condições:<br>
 Condição 1: $ \pi \in $ NP.<br>
 Condição 2: Todo problema $\beta \in $ NP satisfaz $\beta$ $\propto$ $\pi$.
-
-    A primeira condição já foi dada, e a segunda condição é satisfeita por transitividade:
-
-    $\beta$ $\propto$ SAT e SAT $\propto$ $\pi$ ⇒ $\beta$ $\propto$ $\pi$
-
-    Em resumo: “Sejam $\pi_1$ e $\pi_2$ problemas em NP. Se $\pi_1$ for NP-Completo e
-
-    $\pi_1$ $\propto$ $\pi_2$ , então $\pi_2$ também é NP-Completo.”
+>
+>A primeira condição já foi dada, e a segunda condição é satisfeita por transitividade:
+>
+>$\beta$ $\propto$ SAT e SAT $\propto$ $\pi$ ⇒ $\beta$ $\propto$ $\pi$
+>
+>Em resumo: “Sejam $\pi_1$ e $\pi_2$ problemas em NP. Se $\pi_1$ for NP-Completo e
+>
+>$\pi_1$ $\propto$ $\pi_2$ , então $\pi_2$ também é NP-Completo.”
 
 ## Questão 5. Considere o problema de decisão $\pi$ descrito abaixo.
 
@@ -198,48 +195,48 @@ Condição 2: Todo problema $\beta \in $ NP satisfaz $\beta$ $\propto$ $\pi$.
 
 ### Mostre se o problema $\pi$ pertence, ou não, à classe NP.
 
----
-    RESPOSTA:
-    Para provar que $\pi$ pertence a NP é necessário verificá-lo:
+>RESPOSTA:
+Para provar que $\pi$ pertence a NP é necessário verificá-lo:
+>
+>FASE 1: Exibição e justificativa da resposta “sim”.
 
-    FASE 1: Exibição e justificativa da resposta “sim”.
+Dado o grafo $G_1$: \
+![Grafo 1](grafo_1_questao_5.png)
 
-    Dado o grafo G1 e G2: \
-    [Grafo G1] [Grafo G2]
+e $G_2$: \
+![Grafo 2](grafo_2_questao_5.png)
 
-    justificativa para função que transforma G1 em G2:
-
-    [Conjunto contendo as transformações dos vértices que compõe as arestas]
-
-    FASE 2: verificação da resposta “sim” em tempo polinomial:
-
-    pseudocódigo:
+>justificativa para função que transforma G1 em G2: \
+$f: {A \rightarrow 2; D \rightarrow 1; C \rightarrow 4; B \rightarrow 3;}$
+>
+>FASE 2: verificação da resposta “sim” em tempo polinomial:
+>
+>pseudocódigo:
 ```
 VERIFICA(G1, G2, f())
     // primeiro testa as cardinalidades de V1 e V2
-    se |V1| !$\neq$ |V2|:
+    se |V1| != |V2|:
         retorna "FALSO"
-    teste1 $\neq$ {} // conjunto de teste temporário
-    teste2 $\neq$ E2 // conjunto de teste temporário
+    teste1 = {} // conjunto de teste temporário
+    teste2 = E2 // conjunto de teste temporário
     // depois aplica a função f() nos elementos de V1
     para cada (u, w) em E1:
         // adiciona a aresta com os vértices transformados por f()
-        teste1 $\neq$ teste1 + (f(u), f(w))
+        teste1 = teste1 + (f(u), f(w))
     // em seguida verifica se G1 tornou-se equivalente a G2
     para cada (u1, w1) em teste1:
         para cada (u2, w2) em teste2:
-            se (u1, w1) $\neq$$\neq$ (u2, w2):
+            se (u1, w1) == (u2, w2):
                 remove (u1, w1) de teste1
                 remove (u2, w2) de teste2
                 pula para o próximo elemento de teste1
-    se |teste1 + teste2| $\neq$$\neq$ 0: retorna "VERDADEIRO"
+    se |teste1 + teste2| == 0: retorna "VERDADEIRO"
     senão: retorna "FALSO"
-
-complexidade de tempo:
-O(|V1| + |E1| + |E1| * |E2|)
-termo mais dominante
-O(|E1| * |E2|)
 ```
+>complexidade de tempo: \
+>O(|V1| + |E1| + |E1| * |E2|) \
+>termo mais dominante \
+>O(|E1| * |E2|) 
 
 ## Questão 6. Essa questão é composta por 2 (dois) problemas. Observe que todos os algoritmos usados para resolver os problemas devem ser eficientes, ou seja, não é permitido o uso de algoritmos não-polinomiais em nenhuma parte da solução apresentada.
 
@@ -289,11 +286,25 @@ Considerando ainda que queremos abastecer da melhor maneira possível os nós de
 
 Dentre os algoritmos pesquisados que solucionam esse tipo de problema, como *Successive Shortest Path*, *Primal-Dual*, e *Network Simplex*, escolhemos o último por conta da performance apresentada.
 
-O algoritmo do *Network Simplex* é a aplicação do método simplex para a modelagem do problema como um programa linear. A estrutura de rede do problema, contudo, faz com que a solução seja significativamente mais simples do que um programa linear genérico.
+O algoritmo do *Network Simplex* é a aplicação do método simplex para a modelagem do problema como um programa linear. A estrutura de rede do problema, contudo, faz com que a solução seja significativamente mais simples do que um programa linear genérico (FOURER, 2004).
 
-(Escrever o programa linear no latex e colar aqui).
-E o programa linear resultante é:
+Definido o programa linear, em uma iteração, o método simplex encontrará uma solução básica $\overline{X}_B$ correspondendo às soluções encontradas para as variáveis básicas $X_{ij}$. É importante notar que $\overline{X}_B$ descreverá uma árvore geradora na rede.
 
+Para começar o método simplex, é preciso resolver o sistema linear $\pi B=c_B$. Extraindo apenas os coeficientes das variáveis básicas do programa linear teremos uma matriz $B$ onde cada **coluna** corresponderá a uma variável básica $X_{ij}$ associada a um $c_B$. Cada coluna de $B$ possuirá apenas dois valores não nulos, $+1$ na linha $i$ e $-1$ na linha $j$; Além disso, as colunas de $B$ correspondentes a uma variável básica de folga $s_i$ terão apenas uma variável não nula, $1$, na coluna $i$.
+
+Os valores correspondentes em $c_B$ são $c{ij}$ para um $X_{ij}$ básico, e $0$ para um $s_i$ básico.
+    
+Por conta disso, as equações em $\pi B=c_B$ se resumem a um sistema simples, da forma:
+
+$$
+\pi_{i} - \pi_{j} = X_{ij}, \forall(i,j) \text{ utilizado em } \overline{X}_B.
+$$
+
+Assim, resolver um dado $\pi$ é uma operação de simples substituição.
+
+Em seguida, é preciso computar os custos reduzidos.
+
+    
     RESOLUÇÃO:
 Por motivos de melhorar a notação do problema, substituimos o nome dos vertices para valores numericos da seguinte forma: <br>
 a1 = 1; \
@@ -366,15 +377,17 @@ $st.$ <br>
 $ x_{14} + x_{15} + S_1 = 2 \\
  x_{24} + x_{25} + S_2 = 2 \\
  x_{35} + x_{38} + S_3 = 1 \\
- x_{45} + x_{46} + x_{47} - x_{14} - x_{24} \leq 0 \\
- x_{56} + x_{57} + x_{58} - x_{15} - x_{25} - x_{35} - x_{45} \leq 0 \\
- -x_{46} - x_{56} \leq -2 \\
- -x_{47} - x_{57} \leq -1 \\
- -x_{58} - x_{38} \leq -1 \\ $ 
+ x_{45} + x_{46} + x_{47} - x_{14} - x_{24} = 0 \\
+ x_{56} + x_{57} + x_{58} - x_{15} - x_{25} - x_{35} - x_{45} = 0 \\
+ -x_{46} - x_{56} = -2 \\
+ -x_{47} - x_{57} = -1 \\
+ -x_{58} - x_{38} = -1 \\ $ 
 
 Acima, três variáveis de folga foram acrescentadas nas fontes, para descobrir qual o destacamento excedente que deve ficar na sua cidade respectiva.
 
-Em seguida, 
+Em seguida, inicializaremos o tableau (tabela simplex) associado:
+
+
 
 ## Problema 2
 
