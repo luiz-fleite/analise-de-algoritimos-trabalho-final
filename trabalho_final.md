@@ -166,11 +166,11 @@ VERIFICA(G,V',k)
 ```
 
 >complexidade de tempo: \
-O(|V'| + |V'| * E) \
+$O(\mid V^{\prime}\mid + \mid V^{\prime} \mid \ast E)$ <br>
 termo mais dominante \
-O(|V'| * E) \
+$ O( \mid V^{\prime} \mid \ast E) $ \
 como V não pode ser maior que K: \
-O(k * E)
+$ O(k \ast E) $
 
 ### b) Sabe-se que o problema da satisfatibilidade de fórmulas (SAT) é polinomialmente transformável no problema $\pi$. Então, é possível afirmar que $\pi \in$ NP-Completo? Por quê?
 
@@ -181,17 +181,17 @@ Condição 2: Todo problema $\beta \in $ NP satisfaz $\beta$ $\propto$ $\pi$.
 >
 >A primeira condição já foi dada, e a segunda condição é satisfeita por transitividade:
 >
->$\beta$ $\propto$ SAT e SAT $\propto$ $\pi$ ⇒ $\beta$ $\propto$ $\pi$
+>$\beta \propto$ SAT e SAT $\propto \pi \Rightarrow \beta \propto \pi$
 >
 >Em resumo: “Sejam $\pi_1$ e $\pi_2$ problemas em NP. Se $\pi_1$ for NP-Completo e
 >
->$\pi_1$ $\propto$ $\pi_2$ , então $\pi_2$ também é NP-Completo.”
+>$\pi_1 \propto \pi_2$ , então $\pi_2$ também é NP-Completo.”
 
 ## Questão 5. Considere o problema de decisão $\pi$ descrito abaixo.
 
-### Dados de entrada: Dois grafos $G_1 \neq (V_1, E_1)$ e $G_2 \neq (V_2, E_2)$, com $|V_1| \neq |V_2|$.
+### $\bullet$ Dados de entrada: Dois grafos $G_1 = (V_1, E_1)$ e $G_2 = (V_2, E_2)$, com $|V_1| = |V_2|$.
 
-### Decisão: Existe uma função f : $V_1$ → $V_2$, tal que (u, w) $\in $E_1$ se e somente se $(f(u), f(w)) \in E_2$, para todo $u, w \in V_1$?
+### $\bullet$ Decisão: Existe uma função $ f : V_1 \rightarrow V_2$, tal que $(u, w) \in E_1$ se e somente se $(f(u), f(w)) \in E_2$, para todo $u, w \in V_1$?
 
 ### Mostre se o problema $\pi$ pertence, ou não, à classe NP.
 
@@ -234,17 +234,17 @@ VERIFICA(G1, G2, f())
     senão: retorna "FALSO"
 ```
 >complexidade de tempo: \
->O(|V1| + |E1| + |E1| * |E2|) \
+>$O(\mid V1 \mid + \mid E1 \mid + \mid E1 \mid \ast \mid E2\mid )$ \
 >termo mais dominante \
->O(|E1| * |E2|) 
+>$O(\mid E1 \mid \ast \mid E2 \mid)$
 
-## Questão 6. Essa questão é composta por 2 (dois) problemas. Observe que todos os algoritmos usados para resolver os problemas devem ser eficientes, ou seja, não é permitido o uso de algoritmos não-polinomiais em nenhuma parte da solução apresentada.
+# Questão 6. Essa questão é composta por 2 (dois) problemas. Observe que todos os algoritmos usados para resolver os problemas devem ser eficientes, ou seja, não é permitido o uso de algoritmos não-polinomiais em nenhuma parte da solução apresentada.
 
 ## Problema 1
 
 A Segunda Guerra Mundial iniciou-se no dia 1 de setembro de 1939, quando a Polônia foi subitamente atacada pela Alemanha. O Estado-Maior polonês se reuniu de imediato para decidir sobre as movimentações de tropas que deveriam efetuar, de modo a fazer frente à invasão alemã.
 
-As forças polonesas foram informadas que o ataque alemão se daria em três frentes distintas, com nomes de código $\beta$<sub>1</sub>, $\beta$<sub>2</sub> e $\beta$<sub>3</sub>. Chegou-se à conclusão que seria necessário transportar duas divisões de combate para $\beta$<sub>1</sub>, uma divisão para $\beta$<sub>2</sub> e uma outra para $\beta$<sub>3</sub>. A Polônia dispunha nessa altura de cinco divisões de combate nas cidades mais próximas da fronteira atacada, duas aquarteladas na cidade α<sub>1</sub>, duas em α<sub>2</sub> e uma aquartelada em α<sub>3</sub>. Essas divisões poderiam ser transportadas para os locais em perigo, contudo, a força aérea alemã já sobrevoava a Polônia, e a movimentação das divisões teria que ser feita com o menor risco humano possível.
+As forças polonesas foram informadas que o ataque alemão se daria em três frentes distintas, com nomes de código $\beta$<sub>1</sub>, $\beta$<sub>2</sub> e $\beta$<sub>3</sub>. Chegou-se à conclusão que seria necessário transportar duas divisões de combate para $\beta$<sub>1</sub>, uma divisão para $\beta$<sub>2</sub> e uma outra para $\beta$<sub>3</sub>. A Polônia dispunha nessa altura de cinco divisões de combate nas cidades mais próximas da fronteira atacada, duas aquarteladas na cidade $\alpha$<sub>1</sub>, duas em $\alpha$ <sub>2</sub> e uma aquartelada em $\alpha$<sub>3</sub>. Essas divisões poderiam ser transportadas para os locais em perigo, contudo, a força aérea alemã já sobrevoava a Polônia, e a movimentação das divisões teria que ser feita com o menor risco humano possível.
 
 Após uma rápida inspeção do mapa do território, fez-se o esquema da Figura 1, onde as estradas que poderiam ser utilizadas pelas divisões de combate polonesas são apresentadas. Observe que o valor da aresta representa a distância em quilômetros.
 
@@ -254,7 +254,7 @@ Figura 1: Esquemático do território.
 
 Os generais poloneses precisavam decidir de que aquartelamento deviam seguir as divisões necessárias em $\beta$<sub>1</sub>, $\beta$<sub>2</sub> e $\beta$<sub>3</sub>. O objetivo era a minimização das perdas humanas, relacionado diretamente com o perigo de bombardeamento.
 
-Então, durante a reunião decisiva, o general polonês Edward disse: “O perigo de bombardeamento das divisões em movimento pode ser considerado como diretamente proporcional à distância entre cada cidade α e cada frente $\beta$. Nesse caso, devem-se usar essas distâncias como o perigo que uma divisão corre ao ser transportada de α<sub>i</sub> para $\beta$<sub>i</sub>”. Em seguida, o general Jerzy ordenou: “A divisão que sobrar fica no aquartelamento respectivo”.
+Então, durante a reunião decisiva, o general polonês Edward disse: “O perigo de bombardeamento das divisões em movimento pode ser considerado como diretamente proporcional à distância entre cada cidade $\alpha$ e cada frente $\beta$. Nesse caso, devem-se usar essas distâncias como o perigo que uma divisão corre ao ser transportada de $\alpha$<sub>i</sub> para $\beta$<sub>i</sub>”. Em seguida, o general Jerzy ordenou: “A divisão que sobrar fica no aquartelamento respectivo”.
 
 ### Tarefa: Siga as instruções dos generais Edward e Jerzy, e informe quais foram as decisões tomadas pelas forças armadas polonesas. Explique detalhadamente, por meio de um relatório técnico, a estratégia e os algoritmos usados para resolver o problema.
 
@@ -311,22 +311,22 @@ Então, durante a reunião decisiva, o general polonês Edward disse: “O perig
 >RESOLUÇÃO:
 >
 >Por motivos de melhorar a notação do problema, substituimos o nome dos vertices para valores numericos da seguinte forma: <br>
-a1 = 1; \
-a2 = 2; \
-a3 = 3; \
-1 = 4; \
-2 = 5; \
-b1 = 6; \
-b2 = 7; \
-b3 = 8; 
+$\alpha_1 = 1;\\
+\alpha_2 = 2; \\
+\alpha_3 = 3; \\
+1 = 4; \\
+2 = 5; \\
+\beta_1 = 6; \\
+\beta_2 = 7; \\
+\beta_3 = 8;$
 >
 >No problema especifico proposto as variáveis são:
 >
->V = {1, 2, 3, 4, 5, 6, 7, 8};
+>$V = {1, 2, 3, 4, 5, 6, 7, 8};$
 >
->S = {1, 2, 3};
+>$S = {1, 2, 3};$
 >
->T = {6, 7, 8};
+>$T = {6, 7, 8};$
 >
 >$b_1 = 2; 
 b_2 = 2; 
@@ -335,7 +335,7 @@ b_6 = -2;
 b_7 = -1; 
 b_8 = -1;$
 >
->E = {(1, 4), 
+>$E = \{(1, 4), 
 (4, 6), 
 (4, 7), 
 (4, 5), 
@@ -346,7 +346,7 @@ b_8 = -1;$
 (2, 4), 
 (2, 2), 
 (3, 2), 
-(3, 8)};
+(3, 8)\}$;
 >
 >$C_{14} = 1; 
 C_{46} = 2; 
@@ -388,23 +388,6 @@ $ x_{14} + x_{15} + S_1 = 2 \\
  -x_{58} - x_{38} = -1 $ 
 >
 >Acima, três variáveis de folga foram acrescentadas nas fontes, para descobrir qual o destacamento excedente que deve ficar na sua cidade respectiva.
->
->Em seguida encontramos a primeira solução básica viável atavés da árvore geradora mínima:
->
->$max( 2\cdot y_1 + 2\cdot y_2 + y_3 + 0\cdot y_4 + 0\cdot y_5 - 2\cdot y_6 - y_7 - y_8 )$ <br>
-$st.$ <br>
-$  \leq 1 \\
-  \leq 2 \\
-  \leq 4 \\
-  \leq 1 \\
-  \leq 3 \\
-  \leq 3 \\
- \leq 2 \\
-  \leq 5 \\
- \leq 2 \\
- \leq 3 \\
- \leq 1 \\
- \leq 4 $ 
 >
 >Após isso, devemos achar a primeira Solução Básica Viável:
 >
@@ -455,8 +438,31 @@ b_8 = 0;$
 > A partir dessa solução obtida no fim das iterações, podemos ver que os caminhos $p$ obtidos para cada batalhão foram: \
 > $p_1 = \{(1, 4), (4, 6)\};$ para 2 batalhões \
 > $p_2 = \{(2, 4), (4, 7)\};$ para 1 batalhão, e o outro aguarda na cidade (interpretando o resultado $S_2 = 1$) \
-> $p_3 = \{(3, 5), (5, 8)\};$ para 1 batalhão
+> $p_3 = \{(3, 5), (5, 8)\};$ para 1 batalhão 
+> 
+> Por fim, a complexidade de tempo do algoritmo Network Simplex depende de vários fatores, incluindo o número de variáveis e o número de restrições no problema de programação linear associado. Vamos analisar a complexidade de tempo em termos desses parâmetros.
+>
+>O algoritmo Network Simplex é geralmente mais eficiente do que o Simplex clássico para problemas de fluxo de rede devido à sua exploração da estrutura específica desses problemas. No entanto, a análise de complexidade de tempo pode ser complexa e depende do comportamento do algoritmo em casos específicos.
+>
+>Em termos gerais, para um problema de programação linear com nn variáveis e mm restrições, a complexidade de tempo do algoritmo Network Simplex é frequentemente expressa como O(n2⋅m)O(n2⋅m). No entanto, vale ressaltar que isso é uma simplificação e a complexidade real pode variar dependendo da implementação específica e das características do problema.
+>
+>A eficiência do Network Simplex se destaca em problemas de fluxo de rede, onde a estrutura da matriz de restrições é esparsa, ou seja, a maioria dos elementos é zero. Isso ocorre porque o algoritmo explora eficientemente a estrutura da rede durante suas iterações.
+>
+>Para problemas de fluxo de rede maiores e mais densos, outras variantes ou métodos mais recentes podem ser considerados para otimizar o desempenho.
 
+### Referências
+1. Fourer, Robert. Solving Network Problems. Nortwester University, Illinois, Estados Unidos. 2004. Disponível em: http://www.4er.org/CourseNotes/Book%20B/B-IV.pdf.
+
+2. Links diversos:<br>
+2.1 https://ocw.mit.edu/courses/15-082j-network-optimization-fall-2010/resources/mit15_082jf10_lec16/
+
+    2.2 https://codeforces.com/blog/entry/94190
+
+    2.3 https://cp-algorithms.com/graph/min_cost_flow.html#complexity
+
+    2.4 https://web.stanford.edu/class/cs361b/files/cs361b-notes.pdf
+
+    
 ## Problema 2
 
 Uma indústria deve fabricar um lote composto por 3 (três) peças: duas em PVC (peças A e B) e uma em aço inoxidável (peça C). As peças A e B devem ser torneadas e depois rosqueadas, mas a peça C deve apenas ser torneada. Depois de trabalhadas, as peças A e C devem ser montadas e então acopladas à peça B. Finalmente, as peças prontas devem ser embaladas e armazenadas.
@@ -489,9 +495,9 @@ Tabela 1: Tabela de Precedências.
   </tr>
   <tr>
    <td colspan$\neq$"2" >
-    1. Preparar os tornos
+    1. Preparar os tornos    
    </td>
-   <td> –
+   <td>–
    </td>
    <td>8
    </td>
@@ -508,7 +514,7 @@ Tabela 1: Tabela de Precedências.
   </tr>
   <tr>
     <td colspan$\neq$"2" >
-    2.Preparar as embalagens
+     2. Preparar as embalagens    
    </td>
    <td>–
    </td>
@@ -527,8 +533,7 @@ Tabela 1: Tabela de Precedências.
   </tr>
   <tr>
    <td colspan$\neq$"2" >
-    3. Cortar e distribuir o PVC
-   </td>
+    3. Cortar e distribuir o PVC    
    </td>
    <td>–
    </td>
@@ -547,7 +552,7 @@ Tabela 1: Tabela de Precedências.
   </tr>
   <tr>
    <td colspan$\neq$"2" >
-    4. Cortar e distribuir o aço
+    4. Cortar e distribuir o aço 
    </td>
    <td>–
    </td>
@@ -585,7 +590,7 @@ Tabela 1: Tabela de Precedências.
   </tr>
   <tr>
    <td colspan$\neq$"2" >
-    6.Tornear a peça B
+    6. Tornear a peça B
    </td>
    <td>1,3
    </td>
@@ -604,7 +609,7 @@ Tabela 1: Tabela de Precedências.
   </tr>
   <tr>
    <td colspan$\neq$"2" >
-    7. Tornear a peça C
+    7. Tornear a peça C 
    </td>
    <td>1,4
    </td>
@@ -612,8 +617,18 @@ Tabela 1: Tabela de Precedências.
    </td>
   </tr>
   <tr>
+   <td>
+   </td>
    <td colspan$\neq$"2" >
-    8.Rosquear a peça A
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td colspan$\neq$"2" >
+    8. Rosquear a peça A
    </td>
    <td>5
    </td>
@@ -631,11 +646,8 @@ Tabela 1: Tabela de Precedências.
    </td>
   </tr>
   <tr>
-   <td>
-    9. 
-   </td>
    <td colspan$\neq$"2" >
-    
+    9. Rosquear a peça B
    </td>
    <td>6
    </td>
@@ -654,10 +666,7 @@ Tabela 1: Tabela de Precedências.
   </tr>
   <tr>
    <td colspan$\neq$"2" >
-    10.
-   </td>
-   <td>
-    Montar as peças A e C
+    10.Montar as peças A e C
    </td>
    <td>7,8
    </td>
@@ -676,10 +685,7 @@ Tabela 1: Tabela de Precedências.
   </tr>
   <tr>
    <td colspan$\neq$"2" >
-    11.
-   </td>
-   <td>
-    Montar a peça B
+    11. Montar a peça B 
    </td>
    <td>9,10
    </td>
@@ -698,10 +704,7 @@ Tabela 1: Tabela de Precedências.
   </tr>
   <tr>
    <td colspan$\neq$"2" >
-    12.
-   </td>
-   <td>
-    Embalar e armazenar
+    12. Embalar e armazenar
    </td>
    <td>2,11
    </td>
@@ -724,18 +727,178 @@ Tabela 1: Tabela de Precedências.
 
 ### Tarefa: Explique, por meio de um relatório técnico, a estratégia e os algoritmos usados para encontrar:
 
->O Critical Path Method (CPM), ou Método do Caminho Crítico, representa uma técnica de gerenciamento de projetos desenvolvida para planejar e controlar as atividades que compõem um projeto. Originado na década de 1950, o CPM foi concebido para lidar com projetos complexos, como em construção e engenharia. A metodologia identifica atividades críticas que determinam a duração total do projeto, destacando o caminho crítico, que é a sequência de atividades essenciais para a conclusão do projeto dentro do prazo. Utilizando um diagrama de rede com nós e setas para representar as dependências entre atividades, o CPM atribui estimativas de tempo, incluindo otimista, pessimista e mais provável, para cada atividade.
+>O algoritmo implementa o Método do Caminho Crítico (Critical Path Method ou CPM), uma técnica fundamental no gerenciamento de projetos para coordenar e monitorar atividades sequenciais. No âmbito desse algoritmo, o grafo é representado por meio de um dicionário, onde as chaves correspondem aos nós, representando as tarefas, e os valores consistem em listas de nós adjacentes, indicando dependências entre as tarefas. Além disso, as durações das atividades são registradas em um dicionário denominado self.duration.
 >
->A complexidade do CPM aumenta com o número de atividades e a complexidade das interdependências. Entretanto, sua aplicação eficaz é essencial para o gerenciamento bem-sucedido de projetos grandes. O método é particularmente útil em setores como construção, engenharia e desenvolvimento de software, onde a sequência e duração das atividades são cruciais. O software especializado em gerenciamento de projetos ajuda a gerenciar a complexidade do CPM, automatizando cálculos e fornecendo ferramentas visuais para os gerentes de projeto. Em suma, embora o CPM seja uma ferramenta valiosa, a compreensão dos princípios subjacentes e o uso de tecnologia apropriada são fundamentais para seu sucesso em projetos complexos.
-
-### $\bullet$ O tempo mínimo, isto é, o tempo antes do qual não é possível terminar o conjunto de tarefas;
-
+>A primeira etapa do algoritmo consiste na obtenção de uma ordenação topológica do grafo por meio do método topological_sort. Essa ordenação é crucial para determinar a sequência correta de execução das tarefas e é utilizada posteriormente no cálculo do caminho crítico.
 >
-
-### $\bullet$ As tarefas críticas ou de folga nula, ou seja, aquelas que não toleram atrasos;
-
+>O método critical_path é responsável por calcular o caminho crítico, bem como os tempos de início mais cedo para cada tarefa. Utilizando a ordenação topológica, esse método realiza cálculos iterativos para determinar quando cada tarefa deve iniciar, minimizando assim a duração total do projeto.
 >
-
-### $\bullet$ As tarefas que podem sofrer atrasos com as respectivas folgas.
-
+>O último método, slack, tem como objetivo calcular a folga de cada tarefa. A folga representa o tempo que uma tarefa pode ser atrasada sem impactar o tempo total do projeto. Tarefas com folga zero fazem parte do caminho crítico, enquanto tarefas com folga não zero têm alguma flexibilidade temporal.
 >
+>Quanto à complexidade temporal do algoritmo, esta é determinada principalmente pelo cálculo da ordenação topológica, realizado pelo método DFS (topological_sort). Em termos de notação assintótica, a complexidade temporal é O(V + E), onde V é o número de nós (vértices) e E é o número de arestas no grafo. Essa eficiência torna o CPM adequado para a maioria dos projetos do mundo real, especialmente quando estes possuem um número moderado de tarefas e dependências.
+
+Código:
+```
+Algoritmo Grafo
+    // Definindo a classe Graph
+    Classe Grafo
+        graph: dicionário
+        duração: dicionário
+        tempo_inicial: dicionário
+        tempo_final: dicionário
+
+        // Método de inicialização
+        Método Inicializar()
+            graph = DicionárioVazio()
+            duração = DicionárioVazio()
+            tempo_inicial = DicionárioVazio()
+            tempo_final = DicionárioVazio()
+
+        // Método para adicionar arestas
+        Método AdicionarAresta(u, v, duracao)
+            Adicionar v à lista em graph[u]
+            duração[(u, v)] = duracao
+
+        // Método para busca em profundidade
+        Método BuscaEmProfundidade(no, visitado, pilha)
+            visitado[no] = Verdadeiro
+            Se no estiver em graph então
+                Para cada vizinho em graph[no] faça
+                    Se não visitado[vizinho] então
+                        Chamada recursiva BuscaEmProfundidade(vizinho, visitado, pilha)
+            Adicionar no à pilha
+
+        // Método para ordenação topológica
+        Método OrdenacaoTopologica()
+            // Encontrar todos os nós únicos
+            nós = ConjuntoVazio()
+            Para cada nó_vizinhos em graph faça
+                Para cada vizinho em nó_vizinhos faça
+                    Adicionar vizinho a nós
+
+            pilha = ListaVazia()
+            visitado = DicionárioDeFalsos()
+            Para cada no em graph faça
+                Se não visitado[no] então
+                    Chamada recursiva BuscaEmProfundidade(no, visitado, pilha)
+            Retornar pilha invertida
+
+        // Método para caminho crítico
+        Método CaminhoCritico()
+            ordem_topologica = Chamada OrdenacaoTopologica()
+
+            // Encontrar todos os nós únicos
+            nós = ConjuntoVazio()
+            Para cada nó_vizinhos em graph faça
+                Para cada vizinho em nó_vizinhos faça
+                    Adicionar vizinho a nós
+
+            tempo_inicial = DicionárioDeZeros(nós)
+
+            Para cada no em ordem_topologica faça
+                Se no estiver em graph então
+                    Para cada vizinho em graph[no] faça
+                        duração_aresta = duração[(no, vizinho)]
+                        tempo_inicial[vizinho] = Máximo(tempo_inicial[vizinho], tempo_inicial[no] + duração_aresta)
+
+            tempo_final = DicionárioDeInfinitos(nós)
+            max_tempo_final = Máximo(tempo_inicial[valores])
+            Para cada no em ordem_topologica invertida faça
+                Se no estiver em graph então
+                    Para cada vizinho em graph[no] faça
+                        duração_aresta = duração[(no, vizinho)]
+                        tempo_final[no] = Mínimo(tempo_final[no], tempo_final[vizinho] - duração_aresta)
+                Senão
+                    tempo_final[no] = max_tempo_final
+
+            caminho_critico = ListaVazia()
+            Para cada no em ordem_topologica faça
+                Se tempo_inicial[no] igual a tempo_final[no] então
+                    Adicionar no a caminho_critico
+
+            Retornar caminho_critico, max_tempo_final, tempo_inicial
+
+        // Método para folga
+        Método Folga(caminho_critico, tempo_inicial)
+            tempo_final = DicionárioDeInfinitos(graph)
+            max_tempo_final = Máximo(tempo_inicial[valores])
+            Para cada no em OrdenacaoTopologicaInvertida() faça
+                Se no estiver em graph então
+                    Para cada vizinho em graph[no] faça
+                        duração_aresta = duração[(no, vizinho)]
+                        tempo_final[no] = Mínimo(tempo_final[no], tempo_final[vizinho] - duração_aresta)
+                Senão
+                    tempo_final[no] = max_tempo_final
+
+            folgas = DicionárioVazio()
+            Para cada no, tempo_inicial_no em tempo_inicial faça
+                folga = tempo_final[no] - tempo_inicial_no
+                folgas[no] = folga
+
+            folgas_zero = DicionárioVazio()
+            folgas_nao_zero = DicionárioVazio()
+            Para cada no, folga em folgas faça
+                Se folga igual a 0 então
+                    folgas_zero[no] = folga
+                Senão
+                    folgas_nao_zero[no] = folga
+
+            Retornar folgas_zero, folgas_nao_zero
+```
+
+###  O tempo mínimo, isto é, o tempo antes do qual não é possível terminar o conjunto de tarefas;
+
+>Estratégias Utilizadas
+>1. Ordenação Topológica
+>
+>A estratégia principal empregada é a ordenação topológica do grafo, que cria uma sequência linear dos nós de acordo com suas dependências temporais. Essa ordenação é essencial para calcular o tempo mínimo necessário para a conclusão de todas as tarefas.
+>2. Cálculo de Tempo
+>
+>O código utiliza o conceito de tempo para cada tarefa, representado pelos tempos mais cedo de início (ES) e mais tarde de início (LS). O tempo mais cedo de início é o momento em que uma tarefa pode começar, considerando as dependências temporais. O tempo mais tarde de início é o último momento em que uma tarefa pode começar sem atrasar o projeto.
+Algoritmo Implementado
+>
+>O código fornece uma implementação de um grafo dirigido acíclico (DAG) usando a classe Graph. O algoritmo segue os passos a seguir:
+Adição de Arestas
+>
+>O método add_edge adiciona arestas ao grafo, especificando os nós de origem e destino, bem como a duração da tarefa.
+Ordenação Topológica
+>
+>O método topological_sort realiza uma ordenação topológica do grafo usando uma busca em profundidade (DFS). O resultado é uma sequência de tarefas que respeita as dependências temporais.
+Cálculo do Caminho Crítico
+>
+>O método critical_path calcula o caminho crítico do projeto, determinando os tempos mais cedo e mais tarde de início para cada tarefa. Identifica as tarefas críticas, aquelas que não podem ser atrasadas sem afetar o tempo total do projeto.
+Determinação do Tempo Mínimo
+>
+>O tempo mínimo é então determinado como o tempo mais tarde de início da última tarefa no caminho crítico.
+
+### As tarefas críticas ou de folga nula, ou seja, aquelas que não toleram atrasos;
+
+>Estratégias Utilizadas
+>1. Caminho Crítico
+>
+>A estratégia principal para identificar as tarefas críticas e com folga nula é calcular o caminho crítico do projeto. O caminho crítico é a sequência de tarefas que determina o tempo mínimo para concluir o projeto. As tarefas que compõem o caminho crítico são aquelas que não podem ser atrasadas sem afetar o tempo total do projeto.
+>2. Cálculo de Folga
+>
+>A folga de uma tarefa é a quantidade de tempo pela qual ela pode ser atrasada sem atrasar o projeto como um todo. Tarefas com folga nula são consideradas críticas, enquanto aquelas com folga não nula podem sofrer atrasos sem impactar o projeto.
+Algoritmo Implementado
+>
+>O código implementa as estratégias mencionadas usando os seguintes métodos: <br>
+>
+>$\bullet$ Método critical_path: <br>
+>Este método calcula o caminho crítico do projeto, determinando os tempos mais cedo de início (ES) e mais tarde de início (LS) para cada tarefa. As tarefas cujos tempos ES e LS são iguais fazem parte do caminho crítico.<br>
+>
+>$\bullet$ Método slack: <br>
+>Este método calcula a folga para cada tarefa, subtraindo o tempo mais cedo de início (ES) do tempo mais tarde de início (LS). Tarefas com folga nula são identificadas como críticas, enquanto aquelas com folga não nula são consideradas não críticas.
+
+### As tarefas que podem sofrer atrasos com as respectivas folgas.
+
+>Estratégias Utilizadas
+>1. Cálculo de Folga
+>
+>A estratégia principal para identificar as tarefas que podem sofrer atrasos é calcular a folga para cada tarefa. A folga de uma tarefa é a quantidade de tempo pela qual ela pode ser atrasada sem atrasar o projeto como um todo. Tarefas com folga não nula podem sofrer atrasos sem impactar o projeto.
+Algoritmo Implementado
+>
+>O código implementa a estratégia mencionada usando o método:
+Método slack
+>
+>Este método calcula a folga para cada tarefa, subtraindo o tempo mais cedo de início (ES) do tempo mais tarde de início (LS). Tarefas com folga não nula são identificadas como aquelas que podem sofrer atrasos sem impactar o projeto.
