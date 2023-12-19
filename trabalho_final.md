@@ -31,7 +31,7 @@ Análise de Algoritmos
 Alunos:
 
 * Luiz Antônio Lima de Freitas Leite - matrícula: 202204940008
-* Max…
+* Max José Lobato Pantoja Júnior - matrícula: 202204940031
 * Luiz Sérgio Samico Maciel Filho - matrícula: 202204940042
 * Wesley Pontes Barbosa - matrícula: 202204940006
 
@@ -272,8 +272,8 @@ Então, durante a reunião decisiva, o general polonês Edward disse: “O perig
 ![Problema](problema_nao_trivial.png)
 
 > Neste caso, em que S = {a1, a2, a3}, T = {b1, b2, b3}, b(a1) = 2, b(a2) = 2, b(a3) = 1, b(b1) = -2, b(b2) = -1 e b(b3) = -1, ao aplicar o método que fixa primeiro a rota de menor caminho será escolhido a1 para suprir completamente b1 ao custo de 3 duas vezes ao invés de escolher a2 ao custo de 4, a3 suprirá b3 e por fim sobrará apenas a2 para suprir b2 ao custo de 100. Portanto, nós percebemos que era necessário um algoritmo que verificasse mais possibilidades, de forma eficiente, antes de decidir qual s é melhor para suprir cada t considerando o custo total, e não apenas o local.
-
- Assim, reanalisamos o problema e após pesquisa sobre o assunto, chegamos a conclusão de que se trata, na verdade, de **um problema de fluxo de custo mínimo**, tal seja, dado uma rede em que cada aresta $(i, j)$ possua um fluxo $X_{ij}$ e um custo $c_{ij}$ por unidade de fluxo, o custo total do fluxo na aresta é dado por $c_{ij}X_{ij}$. Um modelo que busca o fluxo de custo mínimo procura uma fluxo viável que tem o menor custo de fluxos:
+>
+>Assim, reanalisamos o problema e após pesquisa sobre o assunto, chegamos a conclusão de que se trata, na verdade, de **um problema de fluxo de custo mínimo**, tal seja, dado uma rede em que cada aresta $(i, j)$ possua um fluxo $X_{ij}$ e um custo $c_{ij}$ por unidade de fluxo, o custo total do fluxo na aresta é dado por $c_{ij}X_{ij}$. Um modelo que busca o fluxo de custo mínimo procura uma fluxo viável que tem o menor custo de fluxos:
  $$
  \begin{align} 
 \text{Minimizar} &\qquad \Sigma_{(i,j)\in E}C_{ij}X_{ij} \notag\\
@@ -282,31 +282,35 @@ Então, durante a reunião decisiva, o general polonês Edward disse: “O perig
  &\qquad X_{ij} \geq 0, \qquad (i,j) \in E 
  \end{align}$$
 
-Considerando ainda que queremos abastecer da melhor maneira possível os nós de destino, podemos definir o problema como um problema para encontrar o **fluxo máximo de custo mínimo**.
-
-Dentre os algoritmos pesquisados que solucionam esse tipo de problema, como *Successive Shortest Path*, *Primal-Dual*, e *Network Simplex*, escolhemos o último por conta da performance apresentada.
-
-O algoritmo do *Network Simplex* é a aplicação do método simplex para a modelagem do problema como um programa linear. A estrutura de rede do problema, contudo, faz com que a solução seja significativamente mais simples do que um programa linear genérico (FOURER, 2004).
-
-Definido o programa linear, em uma iteração, o método simplex encontrará uma solução básica $\overline{X}_B$ correspondendo às soluções encontradas para as variáveis básicas $X_{ij}$. É importante notar que $\overline{X}_B$ descreverá uma árvore geradora na rede.
-
-Para começar o método simplex, é preciso resolver o sistema linear $\pi B=c_B$. Extraindo apenas os coeficientes das variáveis básicas do programa linear teremos uma matriz $B$ onde cada **coluna** corresponderá a uma variável básica $X_{ij}$ associada a um $c_B$. Cada coluna de $B$ possuirá apenas dois valores não nulos, $+1$ na linha $i$ e $-1$ na linha $j$; Além disso, as colunas de $B$ correspondentes a uma variável básica de folga $s_i$ terão apenas uma variável não nula, $1$, na coluna $i$.
-
-Os valores correspondentes em $c_B$ são $c{ij}$ para um $X_{ij}$ básico, e $0$ para um $s_i$ básico.
+>Considerando ainda que queremos abastecer da melhor maneira possível os nós de destino, podemos definir o problema como um problema para encontrar o **fluxo máximo de custo mínimo**.
+>
+>Dentre os algoritmos pesquisados que solucionam esse tipo de problema, como *Successive Shortest Path*, *Primal-Dual*, e *Network Simplex*, escolhemos o último por conta da performance apresentada.
+>
+>O algoritmo do *Network Simplex* é a aplicação do método simplex para a modelagem do problema como um programa linear. A estrutura de rede do problema, contudo, faz com que a solução seja significativamente mais simples do que um programa linear genérico (FOURER, 2004).
+>
+>Definido o programa linear, em uma iteração, o método simplex encontrará uma solução básica $\overline{X}_B$ correspondendo às soluções encontradas para as variáveis básicas $X_{ij}$. É importante notar que $\overline{X}_B$ descreverá uma árvore geradora na rede.
+>
+>Para começar o método simplex, é preciso resolver o sistema linear $\pi B=c_B$. Extraindo apenas os coeficientes das variáveis básicas do programa linear teremos uma matriz $B$ onde cada **coluna** corresponderá a uma variável básica $X_{ij}$ associada a um $c_B$. Cada coluna de $B$ possuirá apenas dois valores não nulos, $+1$ na linha $i$ e $-1$ na linha $j$; Além disso, as colunas de $B$ correspondentes a uma variável básica de folga $s_i$ terão apenas uma variável não nula, $1$, na coluna $i$.
+>
+>Os valores correspondentes em $c_B$ são $c{ij}$ para um $X_{ij}$ básico, e $0$ para um $s_i$ básico.
+>   
+>Por conta disso, as equações em $\pi B=c_B$ se resumem a um sistema simples, da forma:
+>
+>$$
+>\pi_{i} - \pi_{j} = X_{ij}, \forall(i,j) \text{ utilizado em } \overline{X}_B.
+>$$
+>
+>Assim, resolver um dado $\pi$ é uma operação de simples substituição.
+>
+>Em seguida, é preciso computar os **custos reduzidos**. Aqui, novamente, a natureza simples das restrições facilita o cômputo. o vetor de coeficientes $e_{ij}$ para um $x_{ij}$ não básico possui apenas dois valores não nulos, um $+!$ no $i$ésimo componente, e um $-1$ no $j$ésimo componente; além disso, o vetor de coeficiente $a_i$ para um $s_i$ não básico possui apenas um valor não nulo, $+1$ como $i$ésimo componente, reduzindo a formula para calcular os custos reduzidos para:
+>$$
+>d_{ij}=c_{ij}-\pi_i+\pi_j
+>$$
+> Repetimos os passos até que todos os custos reduzidos sejam não negativos. Quando isso ocorrer, teremos chegado na solução ótima.
     
-Por conta disso, as equações em $\pi B=c_B$ se resumem a um sistema simples, da forma:
-
-$$
-\pi_{i} - \pi_{j} = X_{ij}, \forall(i,j) \text{ utilizado em } \overline{X}_B.
-$$
-
-Assim, resolver um dado $\pi$ é uma operação de simples substituição.
-
-Em seguida, é preciso computar os custos reduzidos.
-
-    
-    RESOLUÇÃO:
-Por motivos de melhorar a notação do problema, substituimos o nome dos vertices para valores numericos da seguinte forma: <br>
+>RESOLUÇÃO:
+>
+>Por motivos de melhorar a notação do problema, substituimos o nome dos vertices para valores numericos da seguinte forma: <br>
 a1 = 1; \
 a2 = 2; \
 a3 = 3; \
@@ -315,23 +319,23 @@ a3 = 3; \
 b1 = 6; \
 b2 = 7; \
 b3 = 8; 
-
-No problema especifico proposto as variáveis são:
-
-V = {1, 2, 3, 4, 5, 6, 7, 8};
-
-S = {1, 2, 3};
-
-T = {6, 7, 8};
-
-$b_1 = 2; 
+>
+>No problema especifico proposto as variáveis são:
+>
+>V = {1, 2, 3, 4, 5, 6, 7, 8};
+>
+>S = {1, 2, 3};
+>
+>T = {6, 7, 8};
+>
+>$b_1 = 2; 
 b_2 = 2; 
 b_3 = 1; 
 b_6 = -2; 
 b_7 = -1; 
 b_8 = -1;$
-
-E = {(1, 4), 
+>
+>E = {(1, 4), 
 (4, 6), 
 (4, 7), 
 (4, 5), 
@@ -343,8 +347,8 @@ E = {(1, 4),
 (2, 2), 
 (3, 2), 
 (3, 8)};
-
-$C_{14} = 1; 
+>
+>$C_{14} = 1; 
 C_{46} = 2; 
 C_{47} = 4; 
 C_{45} = 1; 
@@ -356,10 +360,10 @@ C_{24} = 2;
 C_{25} = 3; 
 C_{35} = 1; 
 C_{38} = 4 $
-
-E o programa linear resultante é:
-
-$min( x_{14} + x_{46} + x_{47} + x_{45} + x_{15} + x_{26} + x_{27} + x_{28} + x_{24} + x_{22} + x_{32} + x_{38})$ <br>
+>
+>E o programa linear resultante é:
+>
+>$min( x_{14} + 2\cdot x_{46} + 4\cdot x_{47} + x_{45} + 3\cdot x_{15} + 3\cdot x_{56} + 5\cdot x_{57} + 2\cdot x_{58} + 2\cdot x_{24} + 3\cdot x_{25} + x_{35} + 4\cdot x_{38})$ <br>
 $st.$ <br>
 $ x_{14} + x_{15} \leq 2 \\
  x_{24} + x_{25} \leq 2 \\
@@ -369,10 +373,10 @@ $ x_{14} + x_{15} \leq 2 \\
  -x_{46} - x_{56} = -2 \\
  -x_{47} - x_{57} = -1 \\
  -x_{58} - x_{38} = -1 \\ $ 
-
-Escrito na forma canônica: 
-
-$min( x_{14} + x_{46} + x_{47} + x_{45} + x_{15} + x_{26} + x_{27} + x_{28} + x_{24} + x_{22} + x_{32} + x_{38})$ <br>
+>
+>Escrito na forma canônica: 
+>
+>$min(  x_{14} + 2\cdot x_{46} + 4\cdot x_{47} + x_{45} + 3\cdot x_{15} + 3\cdot x_{56} + 5\cdot x_{57} + 2\cdot x_{58} + 2\cdot x_{24} + 3\cdot x_{25} + x_{35} + 4\cdot x_{38} )$ <br>
 $st.$ <br>
 $ x_{14} + x_{15} + S_1 = 2 \\
  x_{24} + x_{25} + S_2 = 2 \\
@@ -381,21 +385,83 @@ $ x_{14} + x_{15} + S_1 = 2 \\
  x_{56} + x_{57} + x_{58} - x_{15} - x_{25} - x_{35} - x_{45} = 0 \\
  -x_{46} - x_{56} = -2 \\
  -x_{47} - x_{57} = -1 \\
- -x_{58} - x_{38} = -1 \\ $ 
+ -x_{58} - x_{38} = -1 $ 
+>
+>Acima, três variáveis de folga foram acrescentadas nas fontes, para descobrir qual o destacamento excedente que deve ficar na sua cidade respectiva.
+>
+>Em seguida encontramos a primeira solução básica viável atavés da árvore geradora mínima:
+>
+>$max( 2\cdot y_1 + 2\cdot y_2 + y_3 + 0\cdot y_4 + 0\cdot y_5 - 2\cdot y_6 - y_7 - y_8 )$ <br>
+$st.$ <br>
+$  \leq 1 \\
+  \leq 2 \\
+  \leq 4 \\
+  \leq 1 \\
+  \leq 3 \\
+  \leq 3 \\
+ \leq 2 \\
+  \leq 5 \\
+ \leq 2 \\
+ \leq 3 \\
+ \leq 1 \\
+ \leq 4 $ 
+>
+>Após isso, devemos achar a primeira Solução Básica Viável:
+>
+>Passo 1: Determinar a variável básica que entra na base. Escolhemos $x_{32}$, pois tem o menor custo reduzido.
 
-Acima, três variáveis de folga foram acrescentadas nas fontes, para descobrir qual o destacamento excedente que deve ficar na sua cidade respectiva.
+Passo 2:
 
-Em seguida, inicializaremos o tableau (tabela simplex) associado:
+>A variável $x_{32}$ entra na base, substituindo $z$.
+Realizamos operações elementares para garantir que a coluna de $x_{32}$ na base seja uma matriz identidade.
 
+Passo 3:
 
+>Agora, determinamos a variável básica que sai da base. Para isso, calculamos as razões entre os termos na coluna rhs e a coluna de $x_{32}$. A menor razão indica a variável que sai.
+Neste caso, $S_3$ sai da base.
+
+Passo 4:
+
+>A variável $S_3$ sai da base, e $x_{32}$ entra na base.
+Atualizamos a tabela de acordo com a regra do pivô e repetimos os passos.
+>
+>Continuamos esses passos até alcançar a solução ótima. O processo envolve iterativamente escolher uma variável básica para entrar e uma para sair da base, atualizando a tabela a cada iteração, até que os custos reduzidos sejam todos não-negativos e a solução seja otimizada.
+>
+>Solução final:
+>$z = 15; \\
+x_{14} = 2; \\
+x_{46} = 2; \\
+x_{47} = 1; \\
+x_{45} = 0; \\
+x_{15} = 0; \\
+x_{56} = 0; \\
+x_{57} = 0; \\
+x_{58} = 1; \\
+x_{24} = 1; \\
+x_{25} = 0; \\
+x_{35} = 1; \\
+x_{38} = 0; \\
+S_1 = 0; \\
+S_2 = 1; \\
+S_3 = 0; \\$
+>
+>$b_1, 
+b_2, 
+b_3, 
+b_6, 
+b_7, 
+b_8 = 0;$
+>
+> A partir dessa solução obtida no fim das iterações, podemos ver que os caminhos $p$ obtidos para cada batalhão foram: \
+> $p_1 = \{(1, 4), (4, 6)\};$ para 2 batalhões \
+> $p_2 = \{(2, 4), (4, 7)\};$ para 1 batalhão, e o outro aguarda na cidade (interpretando o resultado $S_2 = 1$) \
+> $p_3 = \{(3, 5), (5, 8)\};$ para 1 batalhão
 
 ## Problema 2
 
-Uma indústria deve fabricar um lote composto por 3 (três) peças: duas em PVC (peças A e B) e uma em aço inoxidável (peça C). As peças A e B devem ser torneadas e depois rosqueadas, mas a peça C deve apenas ser torneada. Depois de trabalhadas, as peças A e 
+Uma indústria deve fabricar um lote composto por 3 (três) peças: duas em PVC (peças A e B) e uma em aço inoxidável (peça C). As peças A e B devem ser torneadas e depois rosqueadas, mas a peça C deve apenas ser torneada. Depois de trabalhadas, as peças A e C devem ser montadas e então acopladas à peça B. Finalmente, as peças prontas devem ser embaladas e armazenadas.
 
-* devem ser montadas e então acopladas à peça B. Finalmente, as peças prontas devem ser embaladas e armazenadas.
-
-    Algumas dessas tarefas podem ser feitas simultaneamente, mas outras dependem de tarefas anteriores. Uma forma de codificar isso é por meio de uma tabela de precedências (vide Tabela 1). Note que ao lado de cada tarefa encontram-se as tarefas das quais ela depende imediatamente e a duração da tarefa em minutos.
+Algumas dessas tarefas podem ser feitas simultaneamente, mas outras dependem de tarefas anteriores. Uma forma de codificar isso é por meio de uma tabela de precedências (vide Tabela 1). Note que ao lado de cada tarefa encontram-se as tarefas das quais ela depende imediatamente e a duração da tarefa em minutos.
 
 Tabela 1: Tabela de Precedências.
 
@@ -422,11 +488,27 @@ Tabela 1: Tabela de Precedências.
    </td>
   </tr>
   <tr>
+   <td colspan$\neq$"2" >
+    1. Preparar os tornos
+   </td>
+   <td> –
+   </td>
+   <td>8
+   </td>
+  </tr>
+  <tr>
    <td>
-    1.
    </td>
    <td colspan$\neq$"2" >
-    Preparar os tornos
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+    <td colspan$\neq$"2" >
+    2.Preparar as embalagens
    </td>
    <td>–
    </td>
@@ -444,33 +526,9 @@ Tabela 1: Tabela de Precedências.
    </td>
   </tr>
   <tr>
-   <td>
-    2.
-   </td>
    <td colspan$\neq$"2" >
-    Preparar as embalagens
+    3. Cortar e distribuir o PVC
    </td>
-   <td>–
-   </td>
-   <td>8
-   </td>
-  </tr>
-  <tr>
-   <td>
-   </td>
-   <td colspan$\neq$"2" >
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>
-    3.
-   </td>
-   <td colspan$\neq$"2" >
-    Cortar e distribuir o PVC
    </td>
    <td>–
    </td>
@@ -488,11 +546,8 @@ Tabela 1: Tabela de Precedências.
    </td>
   </tr>
   <tr>
-   <td>
-    4.
-   </td>
    <td colspan$\neq$"2" >
-    Cortar e distribuir o aço
+    4. Cortar e distribuir o aço
    </td>
    <td>–
    </td>
@@ -510,11 +565,8 @@ Tabela 1: Tabela de Precedências.
    </td>
   </tr>
   <tr>
-   <td>
-    5.
-   </td>
    <td colspan$\neq$"2" >
-    Tornear a peça A
+    5. Tornear a peça A
    </td>
    <td>1,3
    </td>
@@ -532,11 +584,8 @@ Tabela 1: Tabela de Precedências.
    </td>
   </tr>
   <tr>
-   <td>
-    6.
-   </td>
    <td colspan$\neq$"2" >
-    Tornear a peça B
+    6.Tornear a peça B
    </td>
    <td>1,3
    </td>
@@ -554,11 +603,8 @@ Tabela 1: Tabela de Precedências.
    </td>
   </tr>
   <tr>
-   <td>
-    7.
-   </td>
    <td colspan$\neq$"2" >
-    Tornear a peça C
+    7. Tornear a peça C
    </td>
    <td>1,4
    </td>
@@ -566,21 +612,8 @@ Tabela 1: Tabela de Precedências.
    </td>
   </tr>
   <tr>
-   <td>
-   </td>
    <td colspan$\neq$"2" >
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>
-    8.
-   </td>
-   <td colspan$\neq$"2" >
-    Rosquear a peça A
+    8.Rosquear a peça A
    </td>
    <td>5
    </td>
@@ -599,10 +632,10 @@ Tabela 1: Tabela de Precedências.
   </tr>
   <tr>
    <td>
-    9.
+    9. 
    </td>
    <td colspan$\neq$"2" >
-    Rosquear a peça B
+    
    </td>
    <td>6
    </td>
@@ -689,9 +722,20 @@ Tabela 1: Tabela de Precedências.
   </tr>
 </table>
 
-        Tarefa: Explique, por meio de um relatório técnico, a estratégia e os algoritmos usados para encontrar:
+### Tarefa: Explique, por meio de um relatório técnico, a estratégia e os algoritmos usados para encontrar:
 
-* O tempo mínimo, isto é, o tempo antes do qual não é possível terminar o conjunto de tarefas;
-* As tarefas críticas ou de folga nula, ou seja, aquelas que não toleram atrasos;
-* As tarefas que podem sofrer atrasos com as respectivas folgas.
+>O Critical Path Method (CPM), ou Método do Caminho Crítico, representa uma técnica de gerenciamento de projetos desenvolvida para planejar e controlar as atividades que compõem um projeto. Originado na década de 1950, o CPM foi concebido para lidar com projetos complexos, como em construção e engenharia. A metodologia identifica atividades críticas que determinam a duração total do projeto, destacando o caminho crítico, que é a sequência de atividades essenciais para a conclusão do projeto dentro do prazo. Utilizando um diagrama de rede com nós e setas para representar as dependências entre atividades, o CPM atribui estimativas de tempo, incluindo otimista, pessimista e mais provável, para cada atividade.
+>
+>A complexidade do CPM aumenta com o número de atividades e a complexidade das interdependências. Entretanto, sua aplicação eficaz é essencial para o gerenciamento bem-sucedido de projetos grandes. O método é particularmente útil em setores como construção, engenharia e desenvolvimento de software, onde a sequência e duração das atividades são cruciais. O software especializado em gerenciamento de projetos ajuda a gerenciar a complexidade do CPM, automatizando cálculos e fornecendo ferramentas visuais para os gerentes de projeto. Em suma, embora o CPM seja uma ferramenta valiosa, a compreensão dos princípios subjacentes e o uso de tecnologia apropriada são fundamentais para seu sucesso em projetos complexos.
 
+### $\bullet$ O tempo mínimo, isto é, o tempo antes do qual não é possível terminar o conjunto de tarefas;
+
+>
+
+### $\bullet$ As tarefas críticas ou de folga nula, ou seja, aquelas que não toleram atrasos;
+
+>
+
+### $\bullet$ As tarefas que podem sofrer atrasos com as respectivas folgas.
+
+>
