@@ -46,7 +46,7 @@ por que $\pi_1$ sendo uma restrição de $\pi_2$ ($\pi_2$ $\propto$ $\pi_1$) imp
 
 ### II. Se $\pi_2 \in$ NP e $\pi_1 \in$ NP-Completo, então $\pi_2 \in$ NP-Completo.
 > RESPOSTA: VERDADEIRO, pois para $\pi_2$ ser NP-Completo deve satisfazer 2 condições:<br>
-> Condição 1: $\pi_2 \in $ NP.<br>
+> Condição 1: $\pi_2 \in$ NP.<br>
 > Condição 2: Todo problema $\beta \in$ NP satisfaz $\beta \propto \pi_2$.
 >
 >A primeira condição já foi dada, e a segunda condição é satisfeita por transitividade: Sabemos que $\pi_1 \propto \pi_2$, pois $\pi_1$ é restrição de $\pi_2$, então:
@@ -450,7 +450,7 @@ b_8 = 0;$
 >
 >Para problemas de fluxo de rede maiores e mais densos, outras variantes ou métodos mais recentes podem ser considerados para otimizar o desempenho.
 
-### Referências
+### Referências do problema 1
 1. Fourer, Robert. Solving Network Problems. Nortwester University, Illinois, Estados Unidos. 2004. Disponível em: http://www.4er.org/CourseNotes/Book%20B/B-IV.pdf.
 
 2. ORLIN, James B. A polynomial time primal network simplex algorithm for minimum cost flows. Mathematical Programming, v. 78, p. 109-129, 1997.
@@ -467,8 +467,6 @@ b_8 = 0;$
     3.5 https://www.youtube.com/watch?v=Sv3fb2xRhFI
 
     3.6 https://or.stackexchange.com/questions/5609/adding-slack-nodes-to-min-cost-network-flows
-
-
     
 ## Problema 2
 
@@ -734,7 +732,7 @@ Tabela 1: Tabela de Precedências.
 
 ### Tarefa: Explique, por meio de um relatório técnico, a estratégia e os algoritmos usados para encontrar:
 
->O algoritmo implementa o Método do Caminho Crítico (Critical Path Method ou CPM), uma técnica fundamental no gerenciamento de projetos para coordenar e monitorar atividades sequenciais. No âmbito desse algoritmo, o grafo é representado por meio de um dicionário, onde as chaves correspondem aos nós, representando as tarefas, e os valores consistem em listas de nós adjacentes, indicando dependências entre as tarefas. Além disso, as durações das atividades são registradas em um dicionário denominado self.duration.
+>O algoritmo implementa o Método do Caminho Crítico (Critical Path Method ou CPM), uma técnica fundamental no gerenciamento de projetos para coordenar e monitorar atividades sequenciais. No âmbito desse algoritmo, o grafo é representado por meio de um dicionário, onde as chaves correspondem aos nós, representando as tarefas, e os valores consistem em listas de nós adjacentes, indicando dependências entre as tarefas. Além disso, as durações das atividades são registradas em um dicionário denominado "duração".
 >
 >A primeira etapa do algoritmo consiste na obtenção de uma ordenação topológica do grafo por meio do método 'OrdenacaoTopologica'. Essa ordenação é crucial para determinar a sequência correta de execução das tarefas e é utilizada posteriormente no cálculo do caminho crítico.
 >
@@ -851,6 +849,45 @@ Algoritmo Grafo
                     folgas_nao_zero[no] = folga
 
             Retornar folgas_zero, folgas_nao_zero
+
+    // Programa principal
+    Se __nome__ igual a "__principal__" então
+        grafo = Nova Instância de Grafo()
+
+        grafo.AdicionarAresta('T1', 'T5', 8)
+        grafo.AdicionarAresta('T1', 'T6', 8)
+        grafo.AdicionarAresta('T1', 'T7', 8)
+
+        grafo.AdicionarAresta('T3', 'T5', 10)
+        grafo.AdicionarAresta('T3', 'T6', 10)
+
+        grafo.AdicionarAresta('T4', 'T7', 12)
+
+        grafo.AdicionarAresta('T2', 'T12', 8)
+
+        grafo.AdicionarAresta('T5', 'T8', 8)
+
+        grafo.AdicionarAresta('T6', 'T9', 11)
+
+        grafo.AdicionarAresta('T7', 'T10', 15)
+
+        grafo.AdicionarAresta('T8', 'T10', 9)
+
+        grafo.AdicionarAresta('T9', 'T11', 7)
+
+        grafo.AdicionarAresta('T10', 'T11', 4)
+
+        grafo.AdicionarAresta('T11', 'T12', 6)
+
+        grafo.AdicionarAresta('T12', 'FIM', 7)
+
+        caminho_critico, duracao_projeto, tempo_inicial = grafo.CaminhoCritico()
+        folgas_zero, folgas_nao_zero = grafo.Folga(caminho_critico, tempo_inicial)
+
+        Escrever("Duração do Projeto:", duracao_projeto)
+        Escrever("Caminho Crítico:", caminho_critico)
+        Escrever("Tarefas com Folga Zero:", folgas_zero)
+        Escrever("Tarefas com Folga Não Zero:", folgas_nao_zero)
 ```
 
 ###  O tempo mínimo, isto é, o tempo antes do qual não é possível terminar o conjunto de tarefas;
@@ -881,7 +918,7 @@ Passo 4: Determinação do Tempo Mínimo
 >
 >O tempo mínimo é então determinado como o tempo mais tarde de início da última tarefa no caminho crítico.
 
-### As tarefas críticas ou de folga nula, ou seja, aquelas que não toleram atrasos;
+### As tarefas críticas e as tarefas que toleram atrasos;
 
 >A estratégia principal para identificar as tarefas críticas e com folga nula é calcular o caminho crítico do projeto. O caminho crítico é a sequência de tarefas que determina o tempo mínimo para concluir o projeto. As tarefas que compõem o caminho crítico são aquelas que não podem ser atrasadas sem afetar o tempo total do projeto.
 >
@@ -895,24 +932,34 @@ Passo 4: Determinação do Tempo Mínimo
 >$\bullet$ Método 'Folga': <br>
 >Este método calcula a folga para cada tarefa, subtraindo o tempo mais cedo de início (ES) do tempo mais tarde de início (LS). Tarefas com folga nula são identificadas como críticas, enquanto aquelas com folga não nula são consideradas não críticas.
 
-### As tarefas que podem sofrer atrasos com as respectivas folgas.
-
->Estratégias Utilizadas
->1. Cálculo de Folga
->
->A estratégia principal para identificar as tarefas que podem sofrer atrasos é calcular a folga para cada tarefa. A folga de uma tarefa é a quantidade de tempo pela qual ela pode ser atrasada sem atrasar o projeto como um todo. Tarefas com folga não nula podem sofrer atrasos sem impactar o projeto.
-Algoritmo Implementado
->+
->O código implementa a estratégia mencionada usando o método:
-Método 'Folga'
->
->Este método calcula a folga para cada tarefa, subtraindo o tempo mais cedo de início (ES) do tempo mais tarde de início (LS). Tarefas com folga não nula são identificadas como aquelas que podem sofrer atrasos sem impactar o projeto.
-
 Solução final:
 
-> Após a aplicação do algoritmo ele retorna o valor das variáveis atualizado de acordo com o problema dado
+> Após a aplicação do algoritmo escrito em python [referencia do samico] ele retorna o valor das variáveis atualizado de acordo com o problema dado
 > 
 >Project Duration: 44 \
 Critical Path: ['T4', 'T3', 'T7', 'T5', 'T8', 'T10', 'T11', 'T12', 'FIM'] \
 Zero Slack Tasks: {'T3': 0, 'T4': 0, 'T5': 0, 'T7': 0, 'T8': 0, 'T10': 0, 'T11': 0, 'T12': 0} \
 Non-Zero Slack Tasks: {'T1': 2, 'T2': 29, 'T6': 3, 'T9': 3}
+>
+> A duração do projeto foi de 44 min, as tarefas críticas, isto é, aquelas que não podem sofrer atrasos são as tarefas: \
+T3 - Cortar e distribuir o PVC, \
+T4 - Cortar e distribuir o aço, \
+T5 - Tornear a peça A, \
+T7 - Tornear a peça C, \
+T8 - Rosquear a peça A, \
+T10 - Montar as peças A e C, \
+T11 - Montar a peça B e \
+T12 - Embalar e armazenar.\
+As tarefas que podem sofrer atrasos, com suas Trespectivas folgas, são:\
+T1 - Preparar os tornos: 2min , \
+T2 - Preparar as embalagens: 29min,  \
+T6 - Tornear a peça B: 3min, \
+T9 - Rosquear a peça B: 3min.
+
+### Referências do problema 2
+1. Links diversos:<br>
+1.1 https://www.youtube.com/watch?v=RsXrQOGLT0Y&t=439s
+
+    1.2 http://www.decom.ufop.br/marco/site_media/uploads/bcc204/15_aula_15.pdf
+
+    3.3 https://asana.com/pt/resources/critical-path-method
