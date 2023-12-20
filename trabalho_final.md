@@ -181,7 +181,7 @@ VERIFICA(G,V',k)
 
 >RESPOSTA: Sim,<br>
 pois para ser NP-Completo deve satisfazer 2 condições:<br>
-Condição 1: $ \pi \in $ NP.<br>
+Condição 1: $\pi \in$ NP.<br>
 Condição 2: Todo problema $\beta \in $ NP satisfaz $\beta$ $\propto$ $\pi$.
 >
 >A primeira condição já foi dada, e a segunda condição é satisfeita por transitividade:
