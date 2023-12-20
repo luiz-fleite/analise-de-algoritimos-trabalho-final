@@ -165,12 +165,17 @@ VERIFICA(G,V',k)
     senão: retorna "FALSO"
 ```
 
->complexidade de tempo: \
-$O(\mid V^{\prime}\mid + \mid V^{\prime} \mid \ast E)$ <br>
-termo mais dominante \
-$ O( \mid V^{\prime} \mid \ast E) $ \
-como V não pode ser maior que K: \
-$ O(k \ast E) $
+>complexidade de tempo:
+>
+> $O(\mid V^{\prime}\mid + \mid V^{\prime} \mid \cdot E)$
+>
+>termo mais dominante
+>
+> $O( \mid V^{\prime} \mid \cdot E)$
+> 
+>como V não pode ser maior que K:
+>
+>$O(k \cdot E)$
 
 ### b) Sabe-se que o problema da satisfatibilidade de fórmulas (SAT) é polinomialmente transformável no problema $\pi$. Então, é possível afirmar que $\pi \in$ NP-Completo? Por quê?
 
@@ -191,7 +196,7 @@ Condição 2: Todo problema $\beta \in $ NP satisfaz $\beta$ $\propto$ $\pi$.
 
 ### $\bullet$ Dados de entrada: Dois grafos $G_1 = (V_1, E_1)$ e $G_2 = (V_2, E_2)$, com $|V_1| = |V_2|$.
 
-### $\bullet$ Decisão: Existe uma função $ f : V_1 \rightarrow V_2$, tal que $(u, w) \in E_1$ se e somente se $(f(u), f(w)) \in E_2$, para todo $u, w \in V_1$?
+### $\bullet$ Decisão: Existe uma função $f : V_1 \rightarrow V_2$, tal que $(u, w) \in E_1$ se e somente se $(f(u), f(w)) \in E_2$, para todo $u, w \in V_1$?
 
 ### Mostre se o problema $\pi$ pertence, ou não, à classe NP.
 
@@ -207,7 +212,7 @@ e $G_2$: \
 ![Grafo 2](grafo_2_questao_5.png)
 
 >justificativa para função que transforma G1 em G2: \
-$f: {A \rightarrow 2; D \rightarrow 1; C \rightarrow 4; B \rightarrow 3;}$
+ $f: {A \rightarrow 2; D \rightarrow 1; C \rightarrow 4; B \rightarrow 3;}$
 >
 >FASE 2: verificação da resposta “sim” em tempo polinomial:
 >
@@ -234,9 +239,9 @@ VERIFICA(G1, G2, f())
     senão: retorna "FALSO"
 ```
 >complexidade de tempo: \
->$O(\mid V1 \mid + \mid E1 \mid + \mid E1 \mid \cdot \mid E2\mid )$ \
+> $O(\mid V1 \mid + \mid E1 \mid + \mid E1 \mid \cdot \mid E2\mid )$ \
 >termo mais dominante \
->$O(\mid E1 \mid \cdot \mid E2 \mid)$
+> $O(\mid E1 \mid \cdot \mid E2 \mid)$
 
 # Questão 6. Essa questão é composta por 2 (dois) problemas. Observe que todos os algoritmos usados para resolver os problemas devem ser eficientes, ou seja, não é permitido o uso de algoritmos não-polinomiais em nenhuma parte da solução apresentada.
 
