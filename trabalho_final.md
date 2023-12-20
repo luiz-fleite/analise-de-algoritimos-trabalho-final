@@ -293,9 +293,9 @@ Então, durante a reunião decisiva, o general polonês Edward disse: “O perig
 >
 >O algoritmo do *Network Simplex* é a aplicação do método simplex para a modelagem do problema como um programa linear. A estrutura de rede do problema, contudo, faz com que a solução seja significativamente mais simples do que um programa linear genérico (FOURER, 2004).
 >
->Definido o programa linear, em uma iteração, o método simplex encontrará uma solução básica $\overline{X}_B$ correspondendo às soluções encontradas para as variáveis básicas $X_{ij}$. É importante notar que $\overline{X}_B$ descreverá uma árvore geradora na rede.
+>Definido o programa linear, em uma iteração, o método simplex encontrará uma solução básica $\overline{X}_{B}$ correspondendo às soluções encontradas para as variáveis básicas $X_{ij}$. É importante notar que $\overline{X}_{B}$ descreverá uma árvore geradora na rede.
 >
->Para começar o método simplex, é preciso resolver o sistema linear $\pi B=c_B$. Extraindo apenas os coeficientes das variáveis básicas do programa linear teremos uma matriz $B$ onde cada **coluna** corresponderá a uma variável básica $X_{ij}$ associada a um $c_B$. Cada coluna de $B$ possuirá apenas dois valores não nulos, $+1$ na linha $i$ e $-1$ na linha $j$; Além disso, as colunas de $B$ correspondentes a uma variável básica de folga $s_i$ terão apenas uma variável não nula, $1$, na coluna $i$.
+>Para começar o método simplex, é preciso resolver o sistema linear $\pi B=c_B$. Extraindo apenas os coeficientes das variáveis básicas do programa linear teremos uma matriz $B$ onde cada **coluna** corresponderá a umaa variável básica $X_{ij}$ associada a um $c_B$. Cada coluna de $B$ possuirá apenas dois valores não nulos, $+1$ na linha $i$ e $-1$ na linha $j$; Além disso, as colunas de $B$ correspondentes a uma variável básica de folga $s_i$ terão apenas uma variável não nula, $1$, na coluna $i$.
 >
 >Os valores correspondentes em $c_B$ são $c{ij}$ para um $X_{ij}$ básico, e $0$ para um $s_i$ básico.
 >   
@@ -431,7 +431,7 @@ x_{35} = 1; \\
 x_{38} = 0; \\
 S_1 = 0; \\
 S_2 = 1; \\
-S_3 = 0; \\$
+S_3 = 0;$
 >
 >$b_1, 
 b_2, 
@@ -746,6 +746,134 @@ Tabela 1: Tabela de Precedências.
 >O último método, 'Folga', tem como objetivo calcular a folga de cada tarefa. A folga representa o tempo que uma tarefa pode ser atrasada sem impactar o tempo total do projeto. Tarefas com folga zero fazem parte do caminho crítico, enquanto tarefas com folga não zero têm alguma flexibilidade temporal.
 >
 >Quanto à complexidade temporal do algoritmo, esta é determinada principalmente pelo cálculo da ordenação topológica, realizado pelo método DFS ('OrdenacaoTopologica'). Em termos de notação assintótica, a complexidade temporal é O(V + E), onde V é o número de nós (vértices) e E é o número de arestas no grafo. Essa eficiência torna o CPM adequado para a maioria dos projetos do mundo real, especialmente quando estes possuem um número moderado de tarefas e dependências.
+
+    Código em Python:
+```python
+from collections import defaultdict
+
+class Graph:
+    def __init__(self):
+        self.graph = defaultdict(list)
+        self.duration = {}
+        self.start_time = {}
+        self.finish_time = {}
+
+    def add_edge(self, u, v, duration):
+        self.graph[u].append(v)
+        self.duration[(u, v)] = duration
+
+    def dfs(self, node, visited, stack):
+        visited[node] = True
+        if node in self.graph:
+            for neighbor in self.graph[node]:
+                if not visited[neighbor]:
+                    self.dfs(neighbor, visited, stack)
+        stack.append(node)
+
+    def topological_sort(self):
+        # Find all unique nodes
+        nodes = set(self.graph.keys())
+        for node_neighbors in self.graph.values():
+            for neighbor in node_neighbors:
+                nodes.add(neighbor)
+
+        stack = []
+        visited = {node: False for node in nodes}
+        for node in self.graph:
+            if not visited[node]:
+                self.dfs(node, visited, stack)
+        return stack[::-1]
+
+    def critical_path(self):
+        top_order = self.topological_sort()
+
+        # Find all unique nodes
+        nodes = set(self.graph.keys())
+        for node_neighbors in self.graph.values():
+            for neighbor in node_neighbors:
+                nodes.add(neighbor)
+
+        earliest_start = {node: 0 for node in nodes}
+
+        for node in top_order:
+            if node in self.graph:
+                for neighbor in self.graph[node]:
+                    earliest_start[neighbor] = max(
+                        earliest_start[neighbor], earliest_start[node] + self.duration[(node, neighbor)])
+
+        latest_start = {node: float('inf') for node in nodes}
+        max_finish_time = max(earliest_start.values())
+        for node in reversed(top_order):
+            if node in self.graph:
+                for neighbor in self.graph[node]:
+                    edge_duration = self.duration[(node, neighbor)]
+                    latest_start[node] = min(latest_start[node], latest_start[neighbor] - edge_duration)
+            else:
+                latest_start[node] = max_finish_time
+
+        critical_path = []
+        for node in top_order:
+            if earliest_start[node] == latest_start[node]:
+                critical_path.append(node)
+
+        return critical_path, max_finish_time, earliest_start
+
+    def slack(self, critical_path, earliest_start):
+        latest_start = {node: float('inf') for node in self.graph}
+        max_finish_time = max(earliest_start.values())
+        for node in reversed(self.topological_sort()):
+            if node in self.graph:
+                for neighbor in self.graph[node]:
+                    edge_duration = self.duration[(node, neighbor)]
+                    latest_start[node] = min(latest_start[node], latest_start[neighbor] - edge_duration)
+            else:
+                latest_start[node] = max_finish_time
+
+        slack_times = {node: latest_start[node] - earliest_start[node] for node in self.graph}
+
+        zero_slack_tasks = {node: slack for node, slack in slack_times.items() if slack == 0}
+        non_zero_slack_tasks = {node: slack for node, slack in slack_times.items() if slack != 0}
+
+        return zero_slack_tasks, non_zero_slack_tasks
+
+if __name__ == "__main__":
+    g = Graph()
+
+    g.add_edge('T1', 'T5', 8)
+    g.add_edge('T1', 'T6', 8)
+    g.add_edge('T1', 'T7', 8)
+
+    g.add_edge('T3', 'T5', 10)
+    g.add_edge('T3', 'T6', 10)
+
+    g.add_edge('T4', 'T7', 12)
+
+    g.add_edge('T2', 'T12', 8)
+
+    g.add_edge('T5', 'T8', 8)
+
+    g.add_edge('T6', 'T9', 11)
+
+    g.add_edge('T7', 'T10', 15)
+
+    g.add_edge('T8', 'T10', 9)
+
+    g.add_edge('T9', 'T11', 7)
+
+    g.add_edge('T10', 'T11', 4)
+
+    g.add_edge('T11', 'T12', 6)
+
+    g.add_edge('T12', 'FIM', 7)
+
+    critical_path, project_duration, earliest_start = g.critical_path()
+    zero_slack_times, non_zero_slack_times = g.slack(critical_path, earliest_start)
+
+    print("Project Duration:", project_duration)
+    print("Critical Path:", critical_path)
+    print("Zero Slack Tasks:", zero_slack_times)
+    print("Non-Zero Slack Tasks:", non_zero_slack_times)
+```
 
     pseudcódigo:
 ```
