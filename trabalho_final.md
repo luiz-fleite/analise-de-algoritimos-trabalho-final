@@ -234,9 +234,9 @@ VERIFICA(G1, G2, f())
     senão: retorna "FALSO"
 ```
 >complexidade de tempo: \
->$O(\mid V1 \mid + \mid E1 \mid + \mid E1 \mid \ast \mid E2\mid )$ \
+>$O(\mid V1 \mid + \mid E1 \mid + \mid E1 \mid \cdot \mid E2\mid )$ \
 >termo mais dominante \
->$O(\mid E1 \mid \ast \mid E2 \mid)$
+>$O(\mid E1 \mid \cdot \mid E2 \mid)$
 
 # Questão 6. Essa questão é composta por 2 (dois) problemas. Observe que todos os algoritmos usados para resolver os problemas devem ser eficientes, ou seja, não é permitido o uso de algoritmos não-polinomiais em nenhuma parte da solução apresentada.
 
