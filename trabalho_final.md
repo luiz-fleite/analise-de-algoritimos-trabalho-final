@@ -364,33 +364,33 @@ C_{58} = 2;
 C_{24} = 2; 
 C_{25} = 3; 
 C_{35} = 1; 
-C_{38} = 4 $
+C_{38} = 4$
 >
 >E o programa linear resultante é:
 >
 >$min( x_{14} + 2\cdot x_{46} + 4\cdot x_{47} + x_{45} + 3\cdot x_{15} + 3\cdot x_{56} + 5\cdot x_{57} + 2\cdot x_{58} + 2\cdot x_{24} + 3\cdot x_{25} + x_{35} + 4\cdot x_{38})$ <br>
 $st.$ <br>
-$ x_{14} + x_{15} \leq 2 \\
+$x_{14} + x_{15} \leq 2 \\
  x_{24} + x_{25} \leq 2 \\
  x_{35} + x_{38} \leq 1 \\
  x_{45} + x_{46} + x_{47} - x_{14} - x_{24} = 0 \\
  x_{56} + x_{57} + x_{58} - x_{15} - x_{25} - x_{35} - x_{45} = 0 \\
  -x_{46} - x_{56} = -2 \\
  -x_{47} - x_{57} = -1 \\
- -x_{58} - x_{38} = -1 \\ $ 
+ -x_{58} - x_{38} = -1$ 
 >
 >Escrito na forma canônica: 
 >
 >$min(  x_{14} + 2\cdot x_{46} + 4\cdot x_{47} + x_{45} + 3\cdot x_{15} + 3\cdot x_{56} + 5\cdot x_{57} + 2\cdot x_{58} + 2\cdot x_{24} + 3\cdot x_{25} + x_{35} + 4\cdot x_{38} )$ <br>
 $st.$ <br>
-$ x_{14} + x_{15} + S_1 = 2 \\
+$x_{14} + x_{15} + S_1 = 2 \\
  x_{24} + x_{25} + S_2 = 2 \\
  x_{35} + x_{38} + S_3 = 1 \\
  x_{45} + x_{46} + x_{47} - x_{14} - x_{24} = 0 \\
  x_{56} + x_{57} + x_{58} - x_{15} - x_{25} - x_{35} - x_{45} = 0 \\
  -x_{46} - x_{56} = -2 \\
  -x_{47} - x_{57} = -1 \\
- -x_{58} - x_{38} = -1 $ 
+ -x_{58} - x_{38} = -1$ 
 >
 >Acima, três variáveis de folga foram acrescentadas nas fontes, para descobrir qual o destacamento excedente que deve ficar na sua cidade respectiva.
 >
